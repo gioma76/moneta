@@ -4,178 +4,246 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MONETA — La inteligencia que tu dinero merece</title>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --ft-cream: #fff1e5;
-  --ft-pink:  #f2dfce;
-  --ft-dark:  #1a1a1a;
-  --ft-mid:   #4d4d4d;
-  --ft-light: #9a9a9a;
-  --ft-rule:  #cfc5b8;
-  --ft-teal:  #0d7680;
-  --ft-teal2: #0a5c64;
-  --ft-red:   #cc0000;
-  --ft-green: #00800a;
-  --ft-amber: #b35c00;
-  --surface:  #fffaf5;
-  --border:   #e0d5c8;
+  --cream:   #fdf6ee;
+  --pink:    #f2dfce;
+  --dark:    #1a1a1a;
+  --mid:     #4d4d4d;
+  --light:   #9a9a9a;
+  --surface: #fffaf5;
+  --teal:    #0d7680;
+  --teal2:   #0a5c64;
+  --red:     #cc0000;
+  --amber:   #b35c00;
+  --green:   #1a7a3a;
+  --border:  #e0d5c8;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Lato', sans-serif; background: var(--ft-cream); color: var(--ft-dark); min-height: 100vh; font-size: 19px; line-height: 1.6; }
+body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--dark); min-height: 100vh; font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
 
-.masthead { background: var(--ft-dark); padding: 0 32px; display: flex; align-items: stretch; justify-content: space-between; border-bottom: 3px solid var(--ft-teal); }
-.masthead-brand { display: flex; align-items: center; gap: 16px; padding: 14px 0; }
-.masthead-logo { font-family: 'Libre Baskerville', serif; font-size: 36px; font-weight: 700; color: #fff; letter-spacing: 3px; text-transform: uppercase; }
-.masthead-divider { width: 1px; height: 32px; background: #444; }
-.masthead-tagline { font-size: 11px; color: #999; font-style: italic; max-width: 200px; line-height: 1.4; }
-.masthead-right { display: flex; align-items: center; gap: 20px; }
-.masthead-date { font-size: 11px; color: #777; }
-.live-pill { background: var(--ft-teal); color: #fff; font-size: 10px; font-weight: 600; padding: 4px 12px; letter-spacing: 2px; }
+/* HEADER */
+.header { background: var(--cream); border-bottom: 1px solid var(--border); }
+.header-top { display: flex; justify-content: space-between; align-items: center; padding: 8px 48px; border-bottom: 1px solid var(--border); }
+.hdr-date { font-size: 11px; color: var(--light); letter-spacing: 1px; text-transform: uppercase; }
+.hdr-links { display: flex; gap: 24px; align-items: center; }
+.hdr-links span { font-size: 11px; color: var(--light); cursor: pointer; transition: color 0.15s; }
+.hdr-links span:hover { color: var(--dark); }
+.hdr-sep { width: 1px; height: 12px; background: var(--border); }
+.live-badge { display: flex; align-items: center; gap: 6px; font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--teal); }
+.live-dot { width: 5px; height: 5px; background: var(--teal); border-radius: 50%; animation: blink 2s ease infinite; }
 
-.ticker { background: var(--ft-dark); padding: 8px 32px; display: flex; gap: 32px; overflow-x: auto; scrollbar-width: none; }
+.header-logo-row { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 24px; padding: 22px 48px 10px; }
+.hdr-rule { height: 1px; background: var(--dark); }
+.logo { font-family: 'Libre Baskerville', serif; font-size: 72px; font-weight: 700; color: var(--dark); letter-spacing: 14px; text-transform: uppercase; text-align: center; line-height: 1; white-space: nowrap; animation: rise 0.6s cubic-bezier(.22,1,.36,1) both; }
+.header-tagline { text-align: center; padding: 6px 48px 16px; }
+.tagline { font-family: 'Libre Baskerville', serif; font-size: 13px; font-style: italic; color: var(--light); letter-spacing: 0.5px; }
+
+.header-kpis { display: flex; border-top: 1px solid var(--border); }
+.hkpi { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 13px 16px; border-right: 1px solid var(--border); transition: background 0.15s; cursor: default; }
+.hkpi:last-child { border-right: none; }
+.hkpi:hover { background: var(--pink); }
+.hkpi-label { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--light); font-weight: 600; }
+.hkpi-val { font-family: 'Libre Baskerville', serif; font-size: 26px; font-weight: 700; color: var(--dark); line-height: 1; font-variant-numeric: tabular-nums; }
+.hkpi-tag { font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 2px 8px; }
+.tag-teal { background: rgba(13,118,128,0.1); color: var(--teal); }
+.tag-red  { background: rgba(204,0,0,0.08); color: var(--red); }
+.tag-live { display: flex; align-items: center; gap: 5px; color: var(--light); font-size: 9px; letter-spacing: 1px; text-transform: uppercase; }
+
+/* TICKER */
+.ticker { background: #111; padding: 9px 48px; display: flex; overflow-x: auto; scrollbar-width: none; border-bottom: 1px solid rgba(255,255,255,0.05); }
 .ticker::-webkit-scrollbar { display: none; }
-.tick { display: flex; align-items: center; gap: 8px; white-space: nowrap; }
-.tick-label { font-size: 10px; color: #777; letter-spacing: 1px; text-transform: uppercase; }
-.tick-val { font-size: 13px; font-weight: 600; color: #fff; }
-.up { color: #4caf6e; } .down { color: #e05c5c; } .flat { color: #888; }
+.tick { display: flex; align-items: center; gap: 8px; white-space: nowrap; flex-shrink: 0; padding: 0 24px; border-right: 1px solid rgba(255,255,255,0.07); }
+.tick:first-child { padding-left: 0; }
+.tick:last-child { border-right: none; }
+.tick-label { font-size: 9px; color: rgba(255,255,255,0.3); letter-spacing: 1.5px; text-transform: uppercase; }
+.tick-val { font-size: 13px; font-weight: 600; color: #fff; font-variant-numeric: tabular-nums; }
+.up { color: #3cb86a; } .down { color: #e05252; } .flat { color: rgba(255,255,255,0.3); }
 
-.nav { background: var(--ft-pink); border-bottom: 1px solid var(--ft-rule); padding: 0 32px; display: flex; }
-.nav-item { font-size: 16px; font-weight: 500; color: var(--ft-mid); padding: 12px 18px; cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.15s; }
-.nav-item:hover { color: var(--ft-dark); }
-.nav-item.active { color: var(--ft-dark); font-weight: 600; border-bottom-color: var(--ft-teal); }
+/* NAV */
+.nav { background: var(--pink); border-bottom: 1px solid var(--border); padding: 0 48px; display: flex; }
+.nav-item { font-size: 15px; font-weight: 500; color: var(--mid); padding: 13px 20px; cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.15s; }
+.nav-item:hover { color: var(--dark); }
+.nav-item.active { color: var(--dark); font-weight: 700; border-bottom-color: var(--teal); }
 
-.page { max-width: 1100px; margin: 0 auto; padding: 28px 32px; }
-.panel { display: none; }
-.panel.active { display: block; }
+/* LAYOUT */
+.panel { display: none; } .panel.active { display: block; }
+.page { max-width: 1120px; margin: 0 auto; padding: 36px 48px; }
 
-.kpi-strip { display: grid; grid-template-columns: repeat(4,1fr); background: var(--surface); border: 1px solid var(--border); margin-bottom: 24px; }
-.kpi-item { padding: 20px 22px; border-right: 1px solid var(--border); transition: background 0.15s; }
-.kpi-item:last-child { border-right: none; }
-.kpi-item:hover { background: var(--ft-pink); }
-.kpi-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--ft-light); font-weight: 600; margin-bottom: 8px; }
-.kpi-val { font-family: 'Libre Baskerville', serif; font-size: 42px; font-weight: 600; color: var(--ft-dark); line-height: 1; margin-bottom: 6px; }
-.kpi-sub { font-size: 15px; color: var(--ft-mid); margin-bottom: 6px; }
-.kpi-tag { display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: 1px; padding: 2px 8px; text-transform: uppercase; }
-.tag-stable { background: #e8f4f5; color: var(--ft-teal); }
-.tag-down   { background: #fde8e8; color: var(--ft-red); }
-.tag-warn   { background: #fef3e2; color: var(--ft-amber); }
+/* KPI STRIP */
+.kpi-strip { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 28px; }
+.kpi-item { background: var(--surface); padding: 22px 24px; transition: background 0.15s; }
+.kpi-item:hover { background: var(--pink); }
+.kpi-label { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--light); font-weight: 600; margin-bottom: 8px; }
+.kpi-val { font-family: 'Libre Baskerville', serif; font-size: 40px; font-weight: 700; color: var(--dark); line-height: 1; margin-bottom: 6px; }
+.kpi-sub { font-size: 12px; color: var(--light); margin-bottom: 10px; }
+.kpi-tag { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 3px 10px; }
+.tag-stable { background: rgba(13,118,128,0.1); color: var(--teal); }
+.tag-down   { background: rgba(204,0,0,0.08); color: var(--red); }
+.tag-warn   { background: rgba(179,92,0,0.1); color: var(--amber); }
 
+/* GRID */
 .two-col { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; margin-bottom: 24px; }
-.section-head { display: flex; align-items: baseline; gap: 12px; padding-bottom: 8px; border-bottom: 2px solid var(--ft-dark); margin-bottom: 16px; }
-.section-head h2 { font-family: 'Libre Baskerville', serif; font-size: 22px; font-weight: 700; }
-.section-head span { font-size: 11px; color: var(--ft-light); letter-spacing: 1px; }
-.card { background: var(--surface); border: 1px solid var(--border); padding: 20px; }
+.section-head { display: flex; align-items: baseline; gap: 12px; padding-bottom: 10px; border-bottom: 2px solid var(--dark); margin-bottom: 18px; }
+.section-head h2 { font-family: 'Libre Baskerville', serif; font-size: 20px; font-weight: 700; }
+.section-head span { font-size: 11px; color: var(--light); letter-spacing: 1px; }
+.card { background: var(--surface); border: 1px solid var(--border); padding: 22px; }
 
-.context-item { padding: 16px 0; border-bottom: 1px solid var(--border); display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start; }
+/* CONTEXT */
+.context-item { padding: 18px 0; border-bottom: 1px solid var(--border); display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start; }
 .context-item:last-child { border-bottom: none; padding-bottom: 0; }
 .context-item:first-child { padding-top: 0; }
-.ctx-icon { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; font-size: 16px; background: var(--ft-pink); border: 1px solid var(--border); flex-shrink: 0; }
-.ctx-title { font-family: 'Libre Baskerville', serif; font-size: 19px; font-weight: 600; margin-bottom: 6px; }
-.ctx-status { display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; padding: 2px 8px; margin-bottom: 6px; }
-.status-ok   { background: #e8f4f5; color: var(--ft-teal); }
-.status-watch{ background: #fef3e2; color: var(--ft-amber); }
-.status-risk { background: #fde8e8; color: var(--ft-red); }
-.ctx-body { font-size: 16px; color: var(--ft-mid); line-height: 1.7; }
-.ctx-action { margin-top: 8px; font-size: 16px; color: var(--ft-dark); font-weight: 600; padding-left: 10px; border-left: 3px solid var(--ft-teal); }
+.ctx-icon { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; font-size: 16px; background: var(--pink); border: 1px solid var(--border); flex-shrink: 0; }
+.ctx-title { font-family: 'Libre Baskerville', serif; font-size: 17px; font-weight: 700; margin-bottom: 5px; }
+.ctx-status { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 2px 8px; margin-bottom: 7px; }
+.status-ok    { background: rgba(13,118,128,0.1); color: var(--teal); }
+.status-watch { background: rgba(179,92,0,0.1); color: var(--amber); }
+.status-risk  { background: rgba(204,0,0,0.08); color: var(--red); }
+.ctx-body { font-size: 15px; color: var(--mid); line-height: 1.75; }
+.ctx-action { margin-top: 9px; font-size: 15px; font-weight: 600; color: var(--dark); padding-left: 12px; border-left: 3px solid var(--teal); }
 
-.sidebar-item { padding: 14px 0; border-bottom: 1px solid var(--border); }
-.sidebar-item:last-child { border-bottom: none; padding-bottom: 0; }
-.sidebar-item:first-child { padding-top: 0; }
-.si-label { font-size: 10px; color: var(--ft-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
-.si-val { font-family: 'Libre Baskerville', serif; font-size: 26px; font-weight: 600; margin-bottom: 2px; }
-.si-sub { font-size: 15px; color: var(--ft-mid); }
+/* INDICATORS */
+.indicator-row { padding: 14px 0; border-bottom: 1px solid var(--border); }
+.indicator-row:last-child { border-bottom: none; }
+.ind-label { font-size: 12px; color: var(--light); margin-bottom: 3px; }
+.ind-val { font-family: 'Libre Baskerville', serif; font-size: 22px; font-weight: 700; color: var(--dark); }
+.ind-sub { font-size: 11px; color: var(--light); margin-top: 2px; }
 
-.suggestions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
-.sug { background: #fff; border: 1px solid var(--border); padding: 7px 14px; font-size: 15px; color: var(--ft-mid); cursor: pointer; font-family: 'Lato', sans-serif; transition: all 0.15s; font-weight: 500; }
-.sug:hover { background: var(--ft-teal); color: #fff; border-color: var(--ft-teal); }
+/* QUICK Q */
+.quick-q { display: flex; flex-direction: column; gap: 7px; }
+.quick-btn { background: var(--surface); border: 1px solid var(--border); color: var(--mid); font-family: 'DM Sans', sans-serif; font-size: 14px; padding: 11px 14px; text-align: left; cursor: pointer; transition: all 0.15s; display: flex; align-items: center; gap: 10px; }
+.quick-btn::before { content: '→'; color: var(--teal); font-size: 12px; flex-shrink: 0; }
+.quick-btn:hover { background: var(--pink); border-color: var(--teal); color: var(--dark); }
 
-.chat-messages { height: 520px; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 16px; background: #fff; border: 1px solid var(--border); border-bottom: none; }
-.chat-messages::-webkit-scrollbar { width: 4px; }
-.chat-messages::-webkit-scrollbar-thumb { background: var(--border); }
-.msg { display: flex; flex-direction: column; max-width: 80%; }
-.msg-user { align-self: flex-end; }
-.msg-ai   { align-self: flex-start; }
-.msg-label { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600; margin-bottom: 5px; color: var(--ft-light); }
-.msg-ai .msg-label { color: var(--ft-teal); }
-.msg-bubble { font-size: 17px; line-height: 1.7; padding: 14px 18px; }
-.msg-user .msg-bubble { background: var(--ft-dark); color: #fff; }
-.msg-ai   .msg-bubble { background: var(--ft-pink); border: 1px solid var(--border); color: var(--ft-dark); }
-.chat-bar { display: flex; border: 1px solid var(--border); background: #fff; }
-.chat-in { flex: 1; padding: 12px 16px; border: none; font-family: 'Lato', sans-serif; font-size: 14px; color: var(--ft-dark); background: transparent; outline: none; }
-.chat-in::placeholder { color: var(--ft-light); }
-.chat-send { background: var(--ft-teal); color: #fff; border: none; padding: 12px 24px; font-family: 'Lato', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; transition: background 0.15s; }
-.chat-send:hover { background: var(--ft-teal2); }
-.chat-send:disabled { background: #ccc; cursor: not-allowed; }
+/* CHAT */
+.chat-wrap { display: flex; flex-direction: column; height: calc(100vh - 260px); min-height: 520px; }
+.chat-header { padding-bottom: 16px; border-bottom: 2px solid var(--dark); }
+.chat-header h2 { font-family: 'Libre Baskerville', serif; font-size: 22px; font-weight: 700; }
+.chat-header p { font-size: 12px; color: var(--light); margin-top: 4px; }
+.chat-messages { flex: 1; overflow-y: auto; padding: 22px 0; display: flex; flex-direction: column; gap: 18px; scrollbar-width: thin; }
+.msg { display: flex; flex-direction: column; gap: 5px; max-width: 80%; }
+.msg-ai { align-self: flex-start; } .msg-user { align-self: flex-end; }
+.msg-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--light); }
+.msg-user .msg-label { text-align: right; }
+.msg-bubble { padding: 14px 18px; font-size: 15px; line-height: 1.75; }
+.msg-ai .msg-bubble { background: var(--surface); border: 1px solid var(--border); color: var(--mid); border-left: 3px solid var(--teal); }
+.msg-user .msg-bubble { background: var(--dark); color: #f0f0f0; }
+.chat-input-area { border-top: 1px solid var(--border); padding-top: 16px; display: flex; gap: 10px; }
+#chatInput { flex: 1; background: var(--surface); border: 1px solid var(--border); color: var(--dark); font-family: 'DM Sans', sans-serif; font-size: 15px; padding: 13px 16px; outline: none; transition: border-color 0.15s; }
+#chatInput:focus { border-color: var(--teal); }
+#chatInput::placeholder { color: var(--light); }
+#sendBtn { background: var(--teal); border: none; color: #fff; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; padding: 0 28px; cursor: pointer; transition: background 0.15s; }
+#sendBtn:hover { background: var(--teal2); }
+#sendBtn:disabled { opacity: 0.5; cursor: default; }
 
-.pred-item { padding: 20px 0; border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 60px 1fr; gap: 18px; align-items: start; }
-.pred-item:first-child { padding-top: 0; }
-.pred-item:last-child { border-bottom: none; padding-bottom: 0; }
-.prob-circle { width: 54px; height: 54px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-direction: column; border: 2px solid; flex-shrink: 0; }
-.prob-h { border-color: var(--ft-teal); background: #e8f4f5; }
-.prob-m { border-color: var(--ft-amber); background: #fef3e2; }
-.prob-num { font-family: 'Libre Baskerville', serif; font-size: 16px; font-weight: 700; line-height: 1; }
-.prob-h .prob-num { color: var(--ft-teal); }
-.prob-m .prob-num { color: var(--ft-amber); }
-.prob-pct { font-size: 9px; color: var(--ft-light); letter-spacing: 1px; }
-.pred-title { font-family: 'Libre Baskerville', serif; font-size: 21px; font-weight: 700; margin-bottom: 8px; line-height: 1.4; }
-.pred-body { font-size: 16px; color: var(--ft-mid); line-height: 1.7; margin-bottom: 10px; }
-.pred-impl { font-size: 13px; padding: 8px 12px; background: var(--ft-pink); border-left: 3px solid var(--ft-teal); margin-bottom: 10px; line-height: 1.6; }
-.pred-ask { font-size: 12px; color: var(--ft-teal); background: none; border: 1px solid var(--ft-teal); padding: 5px 12px; cursor: pointer; font-family: 'Lato', sans-serif; font-weight: 600; transition: all 0.15s; }
-.pred-ask:hover { background: var(--ft-teal); color: #fff; }
+/* PREDICTIONS */
+.pred-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+.pred-item { background: var(--surface); padding: 28px 32px; display: grid; grid-template-columns: 80px 1fr; gap: 28px; align-items: start; transition: background 0.15s; }
+.pred-item:hover { background: var(--pink); }
+.pred-num { font-family: 'Libre Baskerville', serif; font-size: 52px; font-weight: 700; color: var(--dark); line-height: 1; text-align: center; }
+.pred-pct { font-size: 10px; color: var(--light); letter-spacing: 1.5px; text-transform: uppercase; text-align: center; margin-top: 4px; }
+.pred-title { font-family: 'Libre Baskerville', serif; font-size: 18px; font-weight: 700; color: var(--dark); margin-bottom: 10px; }
+.pred-body { font-size: 14px; color: var(--mid); line-height: 1.8; margin-bottom: 12px; }
+.pred-you { font-size: 14px; font-weight: 600; color: var(--dark); padding-left: 12px; border-left: 3px solid var(--teal); }
+.pred-link { display: inline-block; margin-top: 12px; font-size: 11px; color: var(--light); letter-spacing: 1px; text-transform: uppercase; cursor: pointer; border-bottom: 1px solid var(--border); padding-bottom: 2px; transition: color 0.15s; }
+.pred-link:hover { color: var(--teal); border-bottom-color: var(--teal); }
 
-.dev-head { display: grid; grid-template-columns: 2.5fr 1fr 1fr 1fr 110px; gap: 12px; padding: 10px 16px; background: var(--ft-dark); color: #ccc; font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; }
-.dev-row { display: grid; grid-template-columns: 2.5fr 1fr 1fr 1fr 110px; gap: 12px; padding: 14px 16px; border-bottom: 1px solid var(--border); background: var(--surface); align-items: center; transition: background 0.15s; }
-.dev-row:hover { background: var(--ft-pink); }
+/* DEVIATIONS */
+.dev-table { border: 1px solid var(--border); }
+.dev-header-row { display: grid; grid-template-columns: 2.5fr 1fr 1.2fr 1fr 110px; gap: 16px; padding: 10px 22px; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--light); font-weight: 700; background: var(--pink); border-bottom: 1px solid var(--border); }
+.dev-row { display: grid; grid-template-columns: 2.5fr 1fr 1.2fr 1fr 110px; gap: 16px; padding: 18px 22px; background: var(--surface); border-bottom: 1px solid var(--border); align-items: center; transition: background 0.15s; }
 .dev-row:last-child { border-bottom: none; }
-.dev-name { font-size: 16px; font-weight: 500; }
-.dev-val  { font-family: 'Libre Baskerville', serif; font-size: 14px; font-weight: 700; }
-.dev-hist { font-size: 15px; color: var(--ft-light); }
+.dev-row:hover { background: var(--pink); }
+.dev-name { font-size: 14px; color: var(--mid); }
+.dev-num { font-family: 'Libre Baskerville', serif; font-size: 17px; font-weight: 700; color: var(--dark); }
+.dev-hist { font-size: 12px; color: var(--light); }
 .dev-delta { font-size: 13px; font-weight: 700; }
-.dpos { color: var(--ft-red); } .dneg { color: var(--ft-green); }
-.sig { font-size: 10px; font-weight: 700; padding: 4px 10px; text-align: center; letter-spacing: 0.5px; text-transform: uppercase; }
-.sig-opp  { background: #e8f4f5; color: var(--ft-teal); }
-.sig-wtch { background: #fef3e2; color: var(--ft-amber); }
-.sig-risk { background: #fde8e8; color: var(--ft-red); }
-.sig-uniq { background: #f0ecfa; color: #6b46c1; }
+.sig { display: inline-block; padding: 3px 10px; font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
+.sig-green { background: rgba(26,122,58,0.1); color: var(--green); }
+.sig-amber { background: rgba(179,92,0,0.1); color: var(--amber); }
+.sig-red   { background: rgba(204,0,0,0.08); color: var(--red); }
 
-.ft-footer { border-top: 2px solid var(--ft-dark); margin-top: 32px; padding-top: 14px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
-.ft-footer span { font-size: 11px; color: var(--ft-light); }
+/* FOOTER */
+.footer { border-top: 1px solid var(--border); padding: 16px 48px; display: flex; justify-content: space-between; align-items: center; margin-top: 20px; }
+.footer-sources { font-size: 11px; color: var(--light); }
+.footer-disc { font-size: 10px; color: #bbb; }
 
-@media(max-width:800px) {
-  .masthead,.nav,.ticker,.page { padding-left: 16px; padding-right: 16px; }
-  .kpi-strip { grid-template-columns: 1fr 1fr; }
-  .kpi-item { border-bottom: 1px solid var(--border); }
-  .two-col { grid-template-columns: 1fr; }
-  .dev-head { display: none; }
-  .dev-row { grid-template-columns: 1fr 1fr; gap: 8px; }
+@keyframes rise { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+@media (max-width:900px) {
+  .header,.ticker,.nav,.page,.footer { padding-left:20px; padding-right:20px; }
+  .logo { font-size:48px; letter-spacing:8px; }
+  .header-kpis { flex-wrap: wrap; }
+  .hkpi { min-width: 50%; }
+  .kpi-strip { grid-template-columns:1fr 1fr; }
+  .two-col { grid-template-columns:1fr; }
+  .pred-item { grid-template-columns:1fr; }
+  .dev-header-row,.dev-row { grid-template-columns:1fr 1fr; }
 }
 </style>
 </head>
 <body>
 
-<div class="masthead">
-  <div class="masthead-brand">
-    <div class="masthead-logo">Moneta</div>
-    <div class="masthead-divider"></div>
-    <div class="masthead-tagline">La inteligencia que tu dinero merece</div>
+<!-- HEADER -->
+<div class="header">
+  <div class="header-top">
+    <span class="hdr-date" id="hdr-date"></span>
+    <div class="hdr-links">
+      <span>Mercados</span>
+      <span>Macro</span>
+      <span>Divisas</span>
+      <span>Energía</span>
+      <div class="hdr-sep"></div>
+      <div class="live-badge"><span class="live-dot"></span>En vivo</div>
+    </div>
   </div>
-  <div class="masthead-right">
-    <div class="masthead-date">Lunes, 8 de marzo de 2026</div>
-    <div class="live-pill">● En vivo</div>
+  <div class="header-logo-row">
+    <div class="hdr-rule"></div>
+    <div class="logo">MONETA</div>
+    <div class="hdr-rule"></div>
+  </div>
+  <div class="header-tagline">
+    <span class="tagline">La inteligencia que tu dinero merece</span>
+  </div>
+  <div class="header-kpis">
+    <div class="hkpi">
+      <span class="hkpi-label">Tipo BCE</span>
+      <span class="hkpi-val">2.00%</span>
+      <span class="hkpi-tag tag-teal">Estable</span>
+    </div>
+    <div class="hkpi">
+      <span class="hkpi-label">Tipo Fed</span>
+      <span class="hkpi-val">4.25%</span>
+      <span class="hkpi-tag tag-red">Bajando ↓</span>
+    </div>
+    <div class="hkpi">
+      <span class="hkpi-label">EUR/USD</span>
+      <span class="hkpi-val" id="hdr-eurusd">—</span>
+      <span class="tag-live"><span class="live-dot"></span>Tiempo real</span>
+    </div>
+    <div class="hkpi">
+      <span class="hkpi-label">Inflación €</span>
+      <span class="hkpi-val">1.7%</span>
+      <span class="hkpi-tag tag-teal">Bajo objetivo</span>
+    </div>
   </div>
 </div>
 
+<!-- TICKER -->
 <div class="ticker">
   <div class="tick"><span class="tick-label">BCE</span><span class="tick-val">2.00%</span><span class="flat"> →</span></div>
   <div class="tick"><span class="tick-label">Fed</span><span class="tick-val">4.25%</span><span class="down"> ↓</span></div>
-  <div class="tick"><span class="tick-label">EUR/USD</span><span id="t-eurusd" class="tick-val">cargando...</span><span id="t-eurusd-chg" class="flat"></span></div>
-  <div class="tick"><span class="tick-label">GBP/USD</span><span id="t-gbpusd" class="tick-val">cargando...</span><span id="t-gbpusd-chg" class="flat"></span></div>
-  <div class="tick"><span class="tick-label">USD/JPY</span><span id="t-usdjpy" class="tick-val">cargando...</span><span id="t-usdjpy-chg" class="flat"></span></div>
-  <div class="tick"><span class="tick-label">Inflación €</span><span class="tick-val">1.7%</span><span class="up"> ↓</span></div>
-  <div class="tick"><span class="tick-label">Actualizado</span><span id="t-time" class="tick-val" style="color:#777">--:--:--</span></div>
+  <div class="tick"><span class="tick-label">EUR/USD</span><span id="t-eurusd" class="tick-val">—</span><span id="t-eurusd-chg" class="flat"></span></div>
+  <div class="tick"><span class="tick-label">GBP/USD</span><span id="t-gbpusd" class="tick-val">—</span><span id="t-gbpusd-chg" class="flat"></span></div>
+  <div class="tick"><span class="tick-label">USD/JPY</span><span id="t-usdjpy" class="tick-val">—</span><span id="t-usdjpy-chg" class="flat"></span></div>
+  <div class="tick"><span class="tick-label">Inflación €</span><span class="tick-val">1.7%</span><span class="flat"> →</span></div>
+  <div class="tick"><span class="tick-label">Actualizado</span><span id="t-time" class="tick-val" style="color:rgba(255,255,255,0.3)">—</span></div>
 </div>
 
+<!-- NAV -->
 <div class="nav">
   <div class="nav-item active" onclick="showTab('panel')">Panel</div>
   <div class="nav-item" onclick="showTab('chat')">Analista IA</div>
@@ -186,11 +254,24 @@ body { font-family: 'Lato', sans-serif; background: var(--ft-cream); color: var(
 <!-- PANEL -->
 <div id="panel" class="panel active"><div class="page">
   <div class="kpi-strip">
-    <div class="kpi-item"><div class="kpi-label">Tipo BCE</div><div class="kpi-val">2.0%</div><div class="kpi-sub">Sin cambios desde Jun 2025</div><div class="kpi-tag tag-stable">Estable</div></div>
-    <div class="kpi-item"><div class="kpi-label">Tipo Fed</div><div class="kpi-val">4.25%</div><div class="kpi-sub">Última bajada: Dic 2025</div><div class="kpi-tag tag-down">Bajando</div></div>
-    <div class="kpi-item"><div class="kpi-label">Inflación Eurozona</div><div class="kpi-val">1.7%</div><div class="kpi-sub">Por debajo del objetivo 2%</div><div class="kpi-tag tag-stable">Bajo objetivo</div></div>
-    <div class="kpi-item"><div class="kpi-label">Petróleo Brent</div><div class="kpi-val">+20%</div><div class="kpi-sub">Conflicto Irán esta semana</div><div class="kpi-tag tag-warn">Alerta</div></div>
+    <div class="kpi-item">
+      <div class="kpi-label">Tipo BCE</div><div class="kpi-val">2.0%</div>
+      <div class="kpi-sub">Sin cambios desde Jun 2025</div><div class="kpi-tag tag-stable">Estable</div>
+    </div>
+    <div class="kpi-item">
+      <div class="kpi-label">Tipo Fed</div><div class="kpi-val">4.25%</div>
+      <div class="kpi-sub">Última bajada: Dic 2025</div><div class="kpi-tag tag-down">Bajando</div>
+    </div>
+    <div class="kpi-item">
+      <div class="kpi-label">Inflación Eurozona</div><div class="kpi-val">1.7%</div>
+      <div class="kpi-sub">Por debajo del objetivo 2%</div><div class="kpi-tag tag-stable">Bajo objetivo</div>
+    </div>
+    <div class="kpi-item">
+      <div class="kpi-label">Petróleo Brent</div><div class="kpi-val">+20%</div>
+      <div class="kpi-sub">Conflicto Irán esta semana</div><div class="kpi-tag tag-warn">Alerta</div>
+    </div>
   </div>
+
   <div class="two-col">
     <div>
       <div class="section-head"><h2>Contexto ejecutivo</h2><span>Actualizado hoy · 08:00 CET</span></div>
@@ -226,90 +307,96 @@ body { font-family: 'Lato', sans-serif; background: var(--ft-cream); color: var(
     </div>
     <div>
       <div class="section-head"><h2>Indicadores clave</h2></div>
-      <div class="card" style="margin-bottom:20px">
-        <div class="sidebar-item"><div class="si-label">Diferencial Fed–BCE</div><div class="si-val">+2.25%</div><div class="si-sub">Media histórica: +0.5% — inusualmente alto</div></div>
-        <div class="sidebar-item"><div class="si-label">EUR/USD proyectado Dic 2026</div><div class="si-val">1.15–1.20</div><div class="si-sub">Si Fed baja y BCE se mantiene</div></div>
-        <div class="sidebar-item"><div class="si-label">Prob. BCE sin cambio</div><div class="si-val">82%</div><div class="si-sub">Próxima reunión · Mercados futuros</div></div>
-        <div class="sidebar-item"><div class="si-label">Bajadas BCE (12 meses)</div><div class="si-val">8</div><div class="si-sub">Media histórica: 3–4 por ciclo</div></div>
-      </div>
-      <div class="section-head"><h2>Consulta al analista</h2></div>
       <div class="card">
-        <div style="font-size:13px;color:var(--ft-mid)">Preguntas frecuentes hoy:</div>
-        <div class="suggestions">
-          <button class="sug" onclick="askAnalyst('¿Debería mover mis ETFs americanos ahora?')">¿Mover ETFs americanos?</button>
-          <button class="sug" onclick="askAnalyst('¿Qué riesgo tiene el conflicto de Irán para mi cartera?')">¿Impacto conflicto Irán?</button>
-          <button class="sug" onclick="askAnalyst('¿Es buen momento para comprar o esperar?')">¿Comprar o esperar?</button>
-          <button class="sug" onclick="askAnalyst('¿Cómo me afecta que el dólar se debilite?')">¿Dólar débil?</button>
-          <button class="sug" onclick="askAnalyst('¿Qué hago con mis ahorros si sube la inflación?')">¿Ahorros vs inflación?</button>
-        </div>
+        <div class="indicator-row"><div class="ind-label">Diferencial Fed–BCE</div><div class="ind-val">+2.25%</div><div class="ind-sub">Media histórica: +0.5% — inusualmente alto</div></div>
+        <div class="indicator-row"><div class="ind-label">EUR/USD proyectado Dic 2026</div><div class="ind-val">1.15–1.20</div><div class="ind-sub">Si Fed baja y BCE se mantiene</div></div>
+        <div class="indicator-row"><div class="ind-label">Prob. BCE sin cambio</div><div class="ind-val">82%</div><div class="ind-sub">Próxima reunión · Mercados futuros</div></div>
+        <div class="indicator-row"><div class="ind-label">Bajadas BCE (12 meses)</div><div class="ind-val">8</div><div class="ind-sub">Media histórica: 3–4 por ciclo</div></div>
+      </div>
+      <div class="section-head" style="margin-top:22px"><h2>Preguntas frecuentes</h2></div>
+      <div class="quick-q">
+        <button class="quick-btn" onclick="askAnalyst('¿Debería mover mis ETFs americanos ahora?')">¿Mover ETFs americanos?</button>
+        <button class="quick-btn" onclick="askAnalyst('¿Cuál es el impacto del conflicto de Irán en mi cartera?')">¿Impacto conflicto Irán?</button>
+        <button class="quick-btn" onclick="askAnalyst('¿Comprar ahora o esperar?')">¿Comprar o esperar?</button>
+        <button class="quick-btn" onclick="askAnalyst('¿El dólar débil cómo afecta a mi cartera?')">¿Dólar débil?</button>
+        <button class="quick-btn" onclick="askAnalyst('¿Mis ahorros están protegidos contra la inflación?')">¿Ahorros vs inflación?</button>
       </div>
     </div>
   </div>
-  <div class="ft-footer"><span>Fuentes: ECB · FRED · Goldman Sachs · Morgan Stanley · Bank of America · Trading Economics</span><span>Panel informativo · No constituye asesoramiento financiero regulado</span></div>
 </div></div>
 
 <!-- CHAT -->
 <div id="chat" class="panel"><div class="page">
-  <div class="section-head"><h2>Analista financiero personal</h2><span>Lenguaje ejecutivo · Sin jerga · Datos reales</span></div>
-  <div class="chat-messages" id="chatMessages">
-    <div class="msg msg-ai">
-      <div class="msg-label">Analista · Moneta</div>
-      <div class="msg-bubble">Buenos días. Tengo los datos de mercado actualizados a hoy, 8 de marzo de 2026. Puedo ayudarte a tomar decisiones concretas sobre tu cartera. ¿Qué quieres saber?</div>
+  <div class="chat-wrap">
+    <div class="chat-header">
+      <h2>Analista financiero personal</h2>
+      <p>Lenguaje ejecutivo · Sin jerga · Datos reales · Mar 2026</p>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+      <div class="msg msg-ai">
+        <div class="msg-label">Analista · Moneta</div>
+        <div class="msg-bubble">Buenos días. Tengo los datos de mercado actualizados a hoy, 8 de marzo de 2026. Puedo ayudarte a tomar decisiones concretas sobre tu cartera. ¿Qué quieres saber?</div>
+      </div>
+    </div>
+    <div class="chat-input-area">
+      <input id="chatInput" type="text" placeholder="Ej: ¿Debería mover mis ETFs americanos ahora?" onkeydown="if(event.key==='Enter')sendChat()">
+      <button id="sendBtn" onclick="sendChat()">Enviar</button>
     </div>
   </div>
-  <div class="chat-bar">
-    <input class="chat-in" id="chatInput" placeholder="Ej: ¿Debería mover mis ETFs americanos ahora?" onkeydown="if(event.key==='Enter')sendChat()">
-    <button class="chat-send" id="sendBtn" onclick="sendChat()">Enviar</button>
-  </div>
-  <div class="ft-footer"><span>ECB · FRED · Goldman Sachs · Morgan Stanley · Bank of America</span><span>No constituye asesoramiento financiero regulado</span></div>
 </div></div>
 
 <!-- PREDICCIONES -->
 <div id="pred" class="panel"><div class="page">
-  <div class="section-head"><h2>Predicciones verificables</h2><span>Próximos 6 meses · Publicadas 8 Mar 2026</span></div>
-  <div class="card">
+  <div class="section-head"><h2>Predicciones verificables</h2><span>Publicadas 8 Mar 2026 · Revisables en 6 meses</span></div>
+  <div class="pred-grid">
     <div class="pred-item">
-      <div class="prob-circle prob-h"><div class="prob-num">85</div><div class="prob-pct">PROB %</div></div>
+      <div><div class="pred-num">85</div><div class="pred-pct">PROB %</div></div>
       <div>
         <div class="pred-title">BCE mantendrá tipos en 2.0% durante todo 2026</div>
-        <div class="pred-body">Inflación en 1.7%, por debajo del objetivo del 2%. Sin presión para subir. Lagarde confirmó estabilidad en febrero. Solo un shock de petróleo sostenido podría cambiar esta postura.</div>
-        <div class="pred-impl">Para ti: Los depósitos y bonos europeos de corto plazo son la opción más segura. No esperes mejora en la rentabilidad de tu ahorro bancario en 2026.</div>
-        <button class="pred-ask" onclick="askAnalyst('Explícame más sobre la predicción del BCE para 2026 y qué debería hacer con mi dinero')">Consultar al analista →</button>
+        <div class="pred-body">Inflación en 1.7%, por debajo del objetivo del 2%. Sin presión para subir. Solo un shock de petróleo sostenido podría cambiar esta postura.</div>
+        <div class="pred-you">Los depósitos y bonos europeos de corto plazo son la opción más segura. No esperes mejora en la rentabilidad de tu ahorro bancario en 2026.</div>
+        <span class="pred-link" onclick="askAnalyst('Explícame más sobre la predicción del BCE para 2026')">Consultar al analista →</span>
       </div>
     </div>
     <div class="pred-item">
-      <div class="prob-circle prob-m"><div class="prob-num">70</div><div class="prob-pct">PROB %</div></div>
+      <div><div class="pred-num">70</div><div class="pred-pct">PROB %</div></div>
       <div>
         <div class="pred-title">Fed bajará tipos dos veces en junio y septiembre 2026</div>
-        <div class="pred-body">Consenso de Goldman Sachs, Morgan Stanley, Bank of America y Nomura. Objetivo: llevar tipos del 4.25% al 3.00–3.25%. Riesgo: si la inflación repunta por el petróleo, la Fed pausa las bajadas.</div>
-        <div class="pred-impl">Para ti: El dólar se debilitará frente al euro. Si tienes ETFs americanos sin cobertura EUR/USD, perderás rentabilidad en euros aunque el activo suba en dólares.</div>
-        <button class="pred-ask" onclick="askAnalyst('¿Qué hago con mis ETFs americanos si la Fed baja tipos y el dólar se debilita?')">Consultar al analista →</button>
+        <div class="pred-body">Consenso de Goldman Sachs, Morgan Stanley, Bank of America y Nomura. Objetivo: llevar tipos del 4.25% al 3.00–3.25%.</div>
+        <div class="pred-you">El dólar se debilitará. Si tienes ETFs americanos sin cobertura EUR/USD, perderás rentabilidad en euros aunque el activo suba en dólares.</div>
+        <span class="pred-link" onclick="askAnalyst('¿Cómo afectan las bajadas de la Fed a mis inversiones?')">Consultar al analista →</span>
       </div>
     </div>
     <div class="pred-item">
-      <div class="prob-circle prob-m"><div class="prob-num">65</div><div class="prob-pct">PROB %</div></div>
+      <div><div class="pred-num">65</div><div class="pred-pct">PROB %</div></div>
       <div>
         <div class="pred-title">EUR/USD alcanzará el rango 1.15–1.20 a finales de 2026</div>
-        <div class="pred-body">El diferencial de tipos Fed–BCE favorece al euro. Si la Fed baja y el BCE se mantiene, el euro se aprecia. Riesgo: escalada del conflicto Irán complica la inflación y ralentiza el ciclo de bajadas de la Fed.</div>
-        <div class="pred-impl">Para ti: Con EUR/USD en 1.15–1.20, tus activos en dólares valdrán menos en euros. Considera diversificar hacia ETFs europeos o con cobertura de divisa.</div>
-        <button class="pred-ask" onclick="askAnalyst('¿Cómo me afecta el EUR/USD a mi cartera y qué debería cambiar?')">Consultar al analista →</button>
+        <div class="pred-body">El diferencial Fed–BCE favorece al euro. Si la Fed baja y el BCE se mantiene, el euro se aprecia.</div>
+        <div class="pred-you">Con EUR/USD en 1.15–1.20, tus activos en dólares valdrán menos en euros. Considera diversificar hacia ETFs europeos.</div>
+        <span class="pred-link" onclick="askAnalyst('¿Cómo me afecta la apreciación del euro?')">Consultar al analista →</span>
       </div>
     </div>
   </div>
-  <div class="ft-footer"><span>Predicciones basadas en consenso de mercado · No garantizan resultados futuros</span><span>ECB · Goldman Sachs · Morgan Stanley · Bank of America · Nomura</span></div>
 </div></div>
 
 <!-- DESVIACIONES -->
 <div id="dev" class="panel"><div class="page">
   <div class="section-head"><h2>Detector de desviaciones históricas</h2><span>¿Qué está pasando ahora que es inusual?</span></div>
-  <div class="dev-head"><div>Indicador</div><div>Actual</div><div>Histórico</div><div>Desviación</div><div>Señal</div></div>
-  <div class="dev-row"><div class="dev-name">Inflación BCE vs objetivo (2%)</div><div class="dev-val">1.7%</div><div class="dev-hist">Media ciclo: 2.8%</div><div class="dev-delta dneg">−1.1pp</div><div class="sig sig-opp">Oportunidad</div></div>
-  <div class="dev-row"><div class="dev-name">Diferencial de tipos Fed–BCE</div><div class="dev-val">+2.25%</div><div class="dev-hist">Histórico: +0.5%</div><div class="dev-delta dpos">+1.75pp</div><div class="sig sig-wtch">Vigilar</div></div>
-  <div class="dev-row"><div class="dev-name">Velocidad de bajadas BCE (12 meses)</div><div class="dev-val">8 bajadas</div><div class="dev-hist">Ciclo normal: 3–4</div><div class="dev-delta dpos">+100%</div><div class="sig sig-uniq">Inusual</div></div>
-  <div class="dev-row"><div class="dev-name">Variación semanal petróleo Brent</div><div class="dev-val">+20%</div><div class="dev-hist">Normal: ±3%</div><div class="dev-delta dpos">+17pp</div><div class="sig sig-risk">Riesgo</div></div>
-  <div class="dev-row"><div class="dev-name">Probabilidad subida tipos BCE (mercados)</div><div class="dev-val">15%</div><div class="dev-hist">Hace 1 mes: 2%</div><div class="dev-delta dpos">+13pp</div><div class="sig sig-risk">Nuevo riesgo</div></div>
-  <div class="ft-footer"><span>ECB Data Portal · FRED · Trading Economics · Mercados de futuros</span><span>No constituye asesoramiento financiero regulado · 8 Mar 2026</span></div>
+  <div class="dev-table">
+    <div class="dev-header-row"><span>Indicador</span><span>Actual</span><span>Histórico</span><span>Desviación</span><span>Señal</span></div>
+    <div class="dev-row"><span class="dev-name">Inflación BCE vs objetivo (2%)</span><span class="dev-num">1.7%</span><span class="dev-hist">Media: 2.8%</span><span class="dev-delta" style="color:var(--green)">−1.1pp</span><span class="sig sig-green">Oportunidad</span></div>
+    <div class="dev-row"><span class="dev-name">Diferencial de tipos Fed–BCE</span><span class="dev-num">+2.25%</span><span class="dev-hist">Histórico: +0.5%</span><span class="dev-delta" style="color:var(--amber)">+1.75pp</span><span class="sig sig-amber">Vigilar</span></div>
+    <div class="dev-row"><span class="dev-name">Velocidad de bajadas BCE (12 meses)</span><span class="dev-num">8 bajadas</span><span class="dev-hist">Normal: 3–4</span><span class="dev-delta" style="color:var(--amber)">+100%</span><span class="sig sig-amber">Inusual</span></div>
+    <div class="dev-row"><span class="dev-name">Variación semanal petróleo Brent</span><span class="dev-num">+20%</span><span class="dev-hist">Normal: ±3%</span><span class="dev-delta" style="color:var(--red)">+17pp</span><span class="sig sig-red">Riesgo</span></div>
+    <div class="dev-row"><span class="dev-name">Probabilidad subida tipos BCE</span><span class="dev-num">15%</span><span class="dev-hist">Hace 1 mes: 2%</span><span class="dev-delta" style="color:var(--red)">+13pp</span><span class="sig sig-red">Nuevo riesgo</span></div>
+  </div>
 </div></div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-sources">ECB · FRED · Goldman Sachs · Morgan Stanley · Bank of America · Trading Economics</div>
+  <div class="footer-disc">No constituye asesoramiento financiero regulado · MONETA © 2026</div>
+</div>
 
 <script>
 const SYSTEM = `Eres el analista financiero personal de Moneta. Hablas en lenguaje ejecutivo, claro y directo. Sin jerga técnica. Máximo 4-5 frases concretas por respuesta.
@@ -326,113 +413,39 @@ Datos verificados a 8 Marzo 2026:
 Termina siempre con una conclusión práctica de una frase para el inversor.`;
 
 let history = [];
-
-// LIVE MARKET DATA — refreshes every 60 seconds
 let prevRates = {};
 
 async function fetchLiveData() {
-  // Try multiple free APIs in sequence until one works
   const apis = [
     async () => {
       const r = await fetch("https://api.frankfurter.app/latest?from=USD&to=EUR,GBP,JPY");
       const d = await r.json();
-      return { eurusd: (1/d.rates.EUR).toFixed(4), gbpusd: (1/d.rates.GBP).toFixed(4), usdjpy: d.rates.JPY.toFixed(2) };
+      return { eurusd:(1/d.rates.EUR).toFixed(4), gbpusd:(1/d.rates.GBP).toFixed(4), usdjpy:d.rates.JPY.toFixed(2) };
     },
     async () => {
       const r = await fetch("https://open.er-api.com/v6/latest/USD");
       const d = await r.json();
-      return { eurusd: (1/d.rates.EUR).toFixed(4), gbpusd: (1/d.rates.GBP).toFixed(4), usdjpy: d.rates.JPY.toFixed(2) };
+      return { eurusd:(1/d.rates.EUR).toFixed(4), gbpusd:(1/d.rates.GBP).toFixed(4), usdjpy:d.rates.JPY.toFixed(2) };
     },
     async () => {
       const r = await fetch("https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json");
       const d = await r.json();
-      return { eurusd: (1/d.usd.eur).toFixed(4), gbpusd: (1/d.usd.gbp).toFixed(4), usdjpy: d.usd.jpy.toFixed(2) };
+      return { eurusd:(1/d.usd.eur).toFixed(4), gbpusd:(1/d.usd.gbp).toFixed(4), usdjpy:d.usd.jpy.toFixed(2) };
     }
   ];
-
   for (const api of apis) {
     try {
       const rates = await api();
-      updateTick("t-eurusd", "t-eurusd-chg", rates.eurusd, prevRates.eurusd);
-      updateTick("t-gbpusd", "t-gbpusd-chg", rates.gbpusd, prevRates.gbpusd);
-      updateTick("t-usdjpy", "t-usdjpy-chg", rates.usdjpy, prevRates.usdjpy, true);
+      updateTick("t-eurusd","t-eurusd-chg",rates.eurusd,prevRates.eurusd);
+      const hdr = document.getElementById('hdr-eurusd');
+      if (hdr) hdr.textContent = rates.eurusd;
+      updateTick("t-gbpusd","t-gbpusd-chg",rates.gbpusd,prevRates.gbpusd);
+      updateTick("t-usdjpy","t-usdjpy-chg",rates.usdjpy,prevRates.usdjpy,true);
       prevRates = rates;
-      const t = new Date().toTimeString().slice(0,8);
       const el = document.getElementById("t-time");
-      if (el) el.textContent = t;
-      return; // success — stop trying
+      if (el) el.textContent = new Date().toTimeString().slice(0,8);
+      return;
     } catch(e) { continue; }
   }
-  // All failed — show static fallback
   const el = document.getElementById("t-time");
-  if (el) el.textContent = "sin conexión";
-}
-
-function updateTick(valId, chgId, newVal, prevVal, inverse=false) {
-  const vEl = document.getElementById(valId);
-  const cEl = document.getElementById(chgId);
-  if (!vEl || !cEl) return;
-  vEl.textContent = newVal;
-  if (prevVal) {
-    const diff = parseFloat(newVal) - parseFloat(prevVal);
-    const up = inverse ? diff < 0 : diff > 0;
-    const dn = inverse ? diff > 0 : diff < 0;
-    cEl.className = up ? "up" : dn ? "down" : "flat";
-    cEl.textContent = up ? " ↑" : dn ? " ↓" : " →";
-    vEl.style.transition = "color 0.4s";
-    vEl.style.color = up ? "#4caf6e" : dn ? "#e05c5c" : "#fff";
-    setTimeout(() => { vEl.style.color = "#fff"; }, 1400);
-  } else { cEl.className="flat"; cEl.textContent=" →"; }
-}
-
-fetchLiveData();
-setInterval(fetchLiveData, 60000);
-
-function showTab(id) {
-  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  document.querySelectorAll('.nav-item')[['panel','chat','pred','dev'].indexOf(id)].classList.add('active');
-}
-
-function askAnalyst(text) {
-  showTab('chat');
-  document.getElementById('chatInput').value = text;
-  setTimeout(sendChat, 80);
-}
-
-function addMsg(role, content) {
-  const c = document.getElementById('chatMessages');
-  const d = document.createElement('div');
-  d.className = `msg msg-${role === 'user' ? 'user' : 'ai'}`;
-  d.innerHTML = `<div class="msg-label">${role === 'user' ? 'Tú' : 'Analista · Moneta'}</div><div class="msg-bubble">${content}</div>`;
-  c.appendChild(d);
-  c.scrollTop = c.scrollHeight;
-  return d;
-}
-
-async function sendChat() {
-  const input = document.getElementById('chatInput');
-  const btn = document.getElementById('sendBtn');
-  const text = input.value.trim();
-  if (!text || btn.disabled) return;
-  input.value = ''; btn.disabled = true; btn.textContent = '...';
-  addMsg('user', text);
-  history.push({ role: 'user', content: text });
-  const loading = addMsg('assistant', '<em style="color:var(--ft-light)">Analizando datos de mercado...</em>');
-  try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 1000, system: SYSTEM, messages: history })
-    });
-    const data = await res.json();
-    const reply = data.content?.[0]?.text || 'Error al obtener respuesta.';
-    loading.querySelector('.msg-bubble').innerHTML = reply.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/
-/g, '<br>');
-    history.push({ role: 'assistant', content: reply });
-  } catch { loading.querySelector('.msg-bubble').textContent = 'Error de conexión.'; }
-  btn.disabled = false; btn.textContent = 'Enviar';
-}
-</script>
-</body>
-</html>
+  if (el)
