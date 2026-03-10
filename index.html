@@ -4,144 +4,135 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MONETA — La inteligencia que tu dinero merece</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --cream:#fdf6ee; --pink:#f2dfce; --dark:#1a1a1a; --mid:#4d4d4d;
-  --light:#9a9a9a; --surface:#fffaf5; --teal:#0d7680; --teal2:#0a5c64;
-  --red:#cc0000; --amber:#b35c00; --green:#1a7a3a; --border:#e0d5c8;
-}
-*{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);min-height:100vh;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;}
-.header{background:var(--cream);border-bottom:1px solid var(--border);}
-.header-top{display:flex;justify-content:space-between;align-items:center;padding:8px 48px;border-bottom:1px solid var(--border);}
-.hdr-date{font-size:11px;color:var(--light);letter-spacing:1px;text-transform:uppercase;}
-.hdr-links{display:flex;gap:24px;align-items:center;}
-.hdr-links span{font-size:11px;color:var(--light);cursor:pointer;transition:color 0.15s;}
-.hdr-links span:hover{color:var(--dark);}
-.hdr-sep{width:1px;height:12px;background:var(--border);}
-.live-badge{display:flex;align-items:center;gap:6px;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal);}
-.live-dot{width:5px;height:5px;background:var(--teal);border-radius:50%;animation:blink 2s ease infinite;}
-.header-logo-row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px;padding:22px 48px 10px;}
-.hdr-rule{height:1px;background:var(--dark);}
-.logo{font-family:'Libre Baskerville',serif;font-size:72px;font-weight:700;color:var(--dark);letter-spacing:14px;text-transform:uppercase;text-align:center;line-height:1;white-space:nowrap;animation:rise 0.6s cubic-bezier(.22,1,.36,1) both;}
-.header-tagline{text-align:center;padding:6px 48px 16px;}
-.tagline{font-family:'Libre Baskerville',serif;font-size:13px;font-style:italic;color:var(--light);letter-spacing:0.5px;}
-.header-kpis{display:flex;border-top:1px solid var(--border);}
-.hkpi{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding:13px 16px;border-right:1px solid var(--border);transition:background 0.15s;}
-.hkpi:last-child{border-right:none;}
-.hkpi:hover{background:var(--pink);}
-.hkpi-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--light);font-weight:600;}
-.hkpi-val{font-family:'Libre Baskerville',serif;font-size:26px;font-weight:700;color:var(--dark);line-height:1;font-variant-numeric:tabular-nums;}
-.hkpi-tag{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:2px 8px;}
-.tag-teal{background:rgba(13,118,128,0.1);color:var(--teal);}
-.tag-red{background:rgba(204,0,0,0.08);color:var(--red);}
-.tag-live{display:flex;align-items:center;gap:5px;color:var(--light);font-size:9px;letter-spacing:1px;text-transform:uppercase;}
-.ticker{background:#111;padding:9px 48px;display:flex;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid rgba(255,255,255,0.05);}
-.ticker::-webkit-scrollbar{display:none;}
-.tick{display:flex;align-items:center;gap:8px;white-space:nowrap;flex-shrink:0;padding:0 24px;border-right:1px solid rgba(255,255,255,0.07);}
-.tick:first-child{padding-left:0;}.tick:last-child{border-right:none;}
-.tick-label{font-size:9px;color:rgba(255,255,255,0.3);letter-spacing:1.5px;text-transform:uppercase;}
-.tick-val{font-size:13px;font-weight:600;color:#fff;font-variant-numeric:tabular-nums;}
-.up{color:#3cb86a;}.down{color:#e05252;}.flat{color:rgba(255,255,255,0.3);}
-.nav{background:var(--pink);border-bottom:1px solid var(--border);padding:0 48px;display:flex;}
-.nav-item{font-size:15px;font-weight:500;color:var(--mid);padding:13px 20px;cursor:pointer;border-bottom:3px solid transparent;transition:all 0.15s;}
-.nav-item:hover{color:var(--dark);}
-.nav-item.active{color:var(--dark);font-weight:700;border-bottom-color:var(--teal);}
-.panel{display:none;}.panel.active{display:block;}
-.page{max-width:1120px;margin:0 auto;padding:36px 48px;}
-.kpi-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:28px;}
-.kpi-item{background:var(--surface);padding:22px 24px;transition:background 0.15s;}
-.kpi-item:hover{background:var(--pink);}
-.kpi-label{font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--light);font-weight:600;margin-bottom:8px;}
-.kpi-val{font-family:'Libre Baskerville',serif;font-size:40px;font-weight:700;color:var(--dark);line-height:1;margin-bottom:6px;}
-.kpi-sub{font-size:12px;color:var(--light);margin-bottom:10px;}
-.kpi-tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:3px 10px;}
-.tag-stable{background:rgba(13,118,128,0.1);color:var(--teal);}
-.tag-down{background:rgba(204,0,0,0.08);color:var(--red);}
-.tag-warn{background:rgba(179,92,0,0.1);color:var(--amber);}
-.two-col{display:grid;grid-template-columns:2fr 1fr;gap:24px;margin-bottom:24px;}
-.section-head{display:flex;align-items:baseline;gap:12px;padding-bottom:10px;border-bottom:2px solid var(--dark);margin-bottom:18px;}
-.section-head h2{font-family:'Libre Baskerville',serif;font-size:20px;font-weight:700;}
-.section-head span{font-size:11px;color:var(--light);letter-spacing:1px;}
-.card{background:var(--surface);border:1px solid var(--border);padding:22px;}
-.context-item{padding:18px 0;border-bottom:1px solid var(--border);display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;}
-.context-item:last-child{border-bottom:none;padding-bottom:0;}
-.context-item:first-child{padding-top:0;}
-.ctx-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:16px;background:var(--pink);border:1px solid var(--border);flex-shrink:0;}
-.ctx-title{font-family:'Libre Baskerville',serif;font-size:17px;font-weight:700;margin-bottom:5px;}
-.ctx-status{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:2px 8px;margin-bottom:7px;}
-.status-ok{background:rgba(13,118,128,0.1);color:var(--teal);}
-.status-watch{background:rgba(179,92,0,0.1);color:var(--amber);}
-.status-risk{background:rgba(204,0,0,0.08);color:var(--red);}
-.ctx-body{font-size:15px;color:var(--mid);line-height:1.75;}
-.ctx-action{margin-top:9px;font-size:15px;font-weight:600;color:var(--dark);padding-left:12px;border-left:3px solid var(--teal);}
-.indicator-row{padding:14px 0;border-bottom:1px solid var(--border);}
-.indicator-row:last-child{border-bottom:none;}
-.ind-label{font-size:12px;color:var(--light);margin-bottom:3px;}
-.ind-val{font-family:'Libre Baskerville',serif;font-size:22px;font-weight:700;color:var(--dark);}
-.ind-sub{font-size:11px;color:var(--light);margin-top:2px;}
-.quick-q{display:flex;flex-direction:column;gap:7px;}
-.quick-btn{background:var(--surface);border:1px solid var(--border);color:var(--mid);font-family:'DM Sans',sans-serif;font-size:14px;padding:11px 14px;text-align:left;cursor:pointer;transition:all 0.15s;display:flex;align-items:center;gap:10px;}
-.quick-btn::before{content:'→';color:var(--teal);font-size:12px;flex-shrink:0;}
-.quick-btn:hover{background:var(--pink);border-color:var(--teal);color:var(--dark);}
-.chat-wrap{display:flex;flex-direction:column;min-height:600px;}
-.chat-messages{flex:1;overflow-y:auto;padding:22px 0;display:flex;flex-direction:column;gap:18px;scrollbar-width:thin;min-height:300px;max-height:50vh;}
-.chat-header{padding-bottom:16px;border-bottom:2px solid var(--dark);}
-.chat-header h2{font-family:'Libre Baskerville',serif;font-size:22px;font-weight:700;}
-.chat-header p{font-size:12px;color:var(--light);margin-top:4px;}
-
-.msg{display:flex;flex-direction:column;gap:5px;max-width:80%;}
-.msg-ai{align-self:flex-start;}.msg-user{align-self:flex-end;}
-.msg-label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--light);}
-.msg-user .msg-label{text-align:right;}
-.msg-bubble{padding:14px 18px;font-size:15px;line-height:1.75;}
-.msg-ai .msg-bubble{background:var(--surface);border:1px solid var(--border);color:var(--mid);border-left:3px solid var(--teal);}
-.msg-user .msg-bubble{background:var(--dark);color:#f0f0f0;}
-.chat-input-area{border-top:1px solid var(--border);padding-top:16px;display:flex;gap:10px;}
-#chatInput{flex:1;background:var(--surface);border:1px solid var(--border);color:var(--dark);font-family:'DM Sans',sans-serif;font-size:15px;padding:13px 16px;outline:none;transition:border-color 0.15s;}
-#chatInput:focus{border-color:var(--teal);}
-#chatInput::placeholder{color:var(--light);}
-#sendBtn{background:var(--teal);border:none;color:#fff;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;padding:0 28px;cursor:pointer;transition:background 0.15s;}
-#sendBtn:hover{background:var(--teal2);}
-#sendBtn:disabled{opacity:0.5;cursor:default;}
-.pred-grid{display:flex;flex-direction:column;gap:1px;background:var(--border);border:1px solid var(--border);}
-.pred-item{background:var(--surface);padding:28px 32px;display:grid;grid-template-columns:80px 1fr;gap:28px;align-items:start;transition:background 0.15s;}
-.pred-item:hover{background:var(--pink);}
-.pred-num{font-family:'Libre Baskerville',serif;font-size:52px;font-weight:700;color:var(--dark);line-height:1;text-align:center;}
-.pred-pct{font-size:10px;color:var(--light);letter-spacing:1.5px;text-transform:uppercase;text-align:center;margin-top:4px;}
-.pred-title{font-family:'Libre Baskerville',serif;font-size:18px;font-weight:700;margin-bottom:10px;}
-.pred-body{font-size:14px;color:var(--mid);line-height:1.8;margin-bottom:12px;}
-.pred-you{font-size:14px;font-weight:600;color:var(--dark);padding-left:12px;border-left:3px solid var(--teal);}
-.pred-link{display:inline-block;margin-top:12px;font-size:11px;color:var(--light);letter-spacing:1px;text-transform:uppercase;cursor:pointer;border-bottom:1px solid var(--border);padding-bottom:2px;}
-.pred-link:hover{color:var(--teal);}
-.dev-table{border:1px solid var(--border);}
-.dev-header-row{display:grid;grid-template-columns:2.5fr 1fr 1.2fr 1fr 110px;gap:16px;padding:10px 22px;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--light);font-weight:700;background:var(--pink);border-bottom:1px solid var(--border);}
-.dev-row{display:grid;grid-template-columns:2.5fr 1fr 1.2fr 1fr 110px;gap:16px;padding:18px 22px;background:var(--surface);border-bottom:1px solid var(--border);align-items:center;transition:background 0.15s;}
-.dev-row:last-child{border-bottom:none;}
-.dev-row:hover{background:var(--pink);}
-.dev-name{font-size:14px;color:var(--mid);}
-.dev-num{font-family:'Libre Baskerville',serif;font-size:17px;font-weight:700;color:var(--dark);}
-.dev-hist{font-size:12px;color:var(--light);}
-.dev-delta{font-size:13px;font-weight:700;}
-.sig{display:inline-block;padding:3px 10px;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;}
-.sig-green{background:rgba(26,122,58,0.1);color:var(--green);}
-.sig-amber{background:rgba(179,92,0,0.1);color:var(--amber);}
-.sig-red{background:rgba(204,0,0,0.08);color:var(--red);}
-.footer{border-top:1px solid var(--border);padding:16px 48px;display:flex;justify-content:space-between;align-items:center;margin-top:20px;}
-.footer-sources{font-size:11px;color:var(--light);}
-.footer-disc{font-size:10px;color:#bbb;}
-@keyframes rise{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
+:root{--cream:#fdf6ee;--pink:#f2dfce;--dark:#1a1a1a;--mid:#4d4d4d;--light:#9a9a9a;--surface:#fffaf5;--teal:#0d7680;--teal2:#0a5c64;--red:#cc0000;--amber:#b35c00;--green:#1a7a3a;--border:#e0d5c8}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);min-height:100vh;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.header{background:var(--cream);border-bottom:1px solid var(--border)}
+.header-top{display:flex;justify-content:space-between;align-items:center;padding:8px 48px;border-bottom:1px solid var(--border)}
+.hdr-date{font-size:11px;color:var(--light);letter-spacing:1px;text-transform:uppercase}
+.hdr-links{display:flex;gap:24px;align-items:center}
+.hdr-links a{font-size:11px;color:var(--light);cursor:pointer;text-decoration:none;transition:color .15s}
+.hdr-links a:hover{color:var(--dark)}
+.hdr-sep{width:1px;height:12px;background:var(--border)}
+.live-badge{display:flex;align-items:center;gap:6px;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal)}
+.live-dot{width:5px;height:5px;background:var(--teal);border-radius:50%;animation:blink 2s ease infinite}
+.header-logo-row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px;padding:22px 48px 10px}
+.hdr-rule{height:1px;background:var(--dark)}
+.logo{font-family:'Libre Baskerville',serif;font-size:72px;font-weight:700;color:var(--dark);letter-spacing:14px;text-transform:uppercase;text-align:center;line-height:1;white-space:nowrap;animation:rise .6s cubic-bezier(.22,1,.36,1) both}
+.header-tagline{text-align:center;padding:6px 48px 16px}
+.tagline{font-family:'Libre Baskerville',serif;font-size:13px;font-style:italic;color:var(--light);letter-spacing:.5px}
+.header-kpis{display:flex;border-top:1px solid var(--border)}
+.hkpi{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding:13px 16px;border-right:1px solid var(--border);transition:background .15s;cursor:default}
+.hkpi:last-child{border-right:none}
+.hkpi:hover{background:var(--pink)}
+.hkpi-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--light);font-weight:600}
+.hkpi-val{font-family:'Libre Baskerville',serif;font-size:26px;font-weight:700;color:var(--dark);line-height:1;font-variant-numeric:tabular-nums}
+.hkpi-tag{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:2px 8px}
+.tag-teal{background:rgba(13,118,128,.1);color:var(--teal)}
+.tag-red{background:rgba(204,0,0,.08);color:var(--red)}
+.tag-live{display:flex;align-items:center;gap:5px;color:var(--light);font-size:9px;letter-spacing:1px;text-transform:uppercase}
+.ticker{background:#111;padding:9px 48px;display:flex;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid rgba(255,255,255,.05)}
+.ticker::-webkit-scrollbar{display:none}
+.tick{display:flex;align-items:center;gap:8px;white-space:nowrap;flex-shrink:0;padding:0 24px;border-right:1px solid rgba(255,255,255,.07)}
+.tick:first-child{padding-left:0}.tick:last-child{border-right:none}
+.tick-label{font-size:9px;color:rgba(255,255,255,.3);letter-spacing:1.5px;text-transform:uppercase}
+.tick-val{font-size:13px;font-weight:600;color:#fff;font-variant-numeric:tabular-nums}
+.up{color:#3cb86a}.down{color:#e05252}.flat{color:rgba(255,255,255,.3)}
+.nav{background:var(--pink);border-bottom:1px solid var(--border);padding:0 48px;display:flex}
+.nav-item{font-size:15px;font-weight:500;color:var(--mid);padding:13px 20px;cursor:pointer;border-bottom:3px solid transparent;transition:all .15s;user-select:none}
+.nav-item:hover{color:var(--dark)}
+.nav-item.active{color:var(--dark);font-weight:700;border-bottom-color:var(--teal)}
+.panel{display:none}.panel.active{display:block}
+.page{max-width:1120px;margin:0 auto;padding:36px 48px}
+.kpi-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:28px}
+.kpi-item{background:var(--surface);padding:22px 24px;transition:background .15s}
+.kpi-item:hover{background:var(--pink)}
+.kpi-label{font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--light);font-weight:600;margin-bottom:8px}
+.kpi-val{font-family:'Libre Baskerville',serif;font-size:40px;font-weight:700;color:var(--dark);line-height:1;margin-bottom:6px}
+.kpi-sub{font-size:12px;color:var(--light);margin-bottom:10px}
+.kpi-tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:3px 10px}
+.tag-stable{background:rgba(13,118,128,.1);color:var(--teal)}
+.tag-down{background:rgba(204,0,0,.08);color:var(--red)}
+.tag-warn{background:rgba(179,92,0,.1);color:var(--amber)}
+.two-col{display:grid;grid-template-columns:2fr 1fr;gap:24px;margin-bottom:24px}
+.section-head{display:flex;align-items:baseline;gap:12px;padding-bottom:10px;border-bottom:2px solid var(--dark);margin-bottom:18px}
+.section-head h2{font-family:'Libre Baskerville',serif;font-size:20px;font-weight:700}
+.section-head span{font-size:11px;color:var(--light);letter-spacing:1px}
+.card{background:var(--surface);border:1px solid var(--border);padding:22px}
+.context-item{padding:18px 0;border-bottom:1px solid var(--border);display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start}
+.context-item:last-child{border-bottom:none;padding-bottom:0}.context-item:first-child{padding-top:0}
+.ctx-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:16px;background:var(--pink);border:1px solid var(--border);flex-shrink:0}
+.ctx-title{font-family:'Libre Baskerville',serif;font-size:17px;font-weight:700;margin-bottom:5px}
+.ctx-status{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:2px 8px;margin-bottom:7px}
+.status-ok{background:rgba(13,118,128,.1);color:var(--teal)}
+.status-watch{background:rgba(179,92,0,.1);color:var(--amber)}
+.status-risk{background:rgba(204,0,0,.08);color:var(--red)}
+.ctx-body{font-size:15px;color:var(--mid);line-height:1.75}
+.ctx-action{margin-top:9px;font-size:15px;font-weight:600;color:var(--dark);padding-left:12px;border-left:3px solid var(--teal)}
+.indicator-row{padding:14px 0;border-bottom:1px solid var(--border)}.indicator-row:last-child{border-bottom:none}
+.ind-label{font-size:12px;color:var(--light);margin-bottom:3px}
+.ind-val{font-family:'Libre Baskerville',serif;font-size:22px;font-weight:700;color:var(--dark)}
+.ind-sub{font-size:11px;color:var(--light);margin-top:2px}
+.quick-q{display:flex;flex-direction:column;gap:7px}
+.quick-btn{background:var(--surface);border:1px solid var(--border);color:var(--mid);font-family:'DM Sans',sans-serif;font-size:14px;padding:11px 14px;text-align:left;cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:10px}
+.quick-btn::before{content:'→';color:var(--teal);font-size:12px;flex-shrink:0}
+.quick-btn:hover{background:var(--pink);border-color:var(--teal);color:var(--dark)}
+.chat-wrap{display:flex;flex-direction:column;min-height:600px}
+.chat-header{padding-bottom:16px;border-bottom:2px solid var(--dark)}
+.chat-header h2{font-family:'Libre Baskerville',serif;font-size:22px;font-weight:700}
+.chat-header p{font-size:12px;color:var(--light);margin-top:4px}
+.chat-messages{overflow-y:auto;padding:22px 0;display:flex;flex-direction:column;gap:18px;scrollbar-width:thin;min-height:200px;max-height:45vh}
+.msg{display:flex;flex-direction:column;gap:5px;max-width:80%}
+.msg-ai{align-self:flex-start}.msg-user{align-self:flex-end}
+.msg-label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--light)}
+.msg-user .msg-label{text-align:right}
+.msg-bubble{padding:14px 18px;font-size:15px;line-height:1.75}
+.msg-ai .msg-bubble{background:var(--surface);border:1px solid var(--border);color:var(--mid);border-left:3px solid var(--teal)}
+.msg-user .msg-bubble{background:var(--dark);color:#f0f0f0}
+.chat-input-area{border-top:1px solid var(--border);padding-top:16px;display:flex;gap:10px;margin-top:16px}
+#chatInput{flex:1;background:var(--surface);border:1px solid var(--border);color:var(--dark);font-family:'DM Sans',sans-serif;font-size:15px;padding:13px 16px;outline:none;transition:border-color .15s}
+#chatInput:focus{border-color:var(--teal)}
+#chatInput::placeholder{color:var(--light)}
+#sendBtn{background:var(--teal);border:none;color:#fff;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;padding:0 28px;cursor:pointer;transition:background .15s}
+#sendBtn:hover{background:var(--teal2)}
+#sendBtn:disabled{opacity:.5;cursor:default}
+.pred-grid{display:flex;flex-direction:column;gap:1px;background:var(--border);border:1px solid var(--border)}
+.pred-item{background:var(--surface);padding:28px 32px;display:grid;grid-template-columns:80px 1fr;gap:28px;align-items:start;transition:background .15s}
+.pred-item:hover{background:var(--pink)}
+.pred-num{font-family:'Libre Baskerville',serif;font-size:52px;font-weight:700;color:var(--dark);line-height:1;text-align:center}
+.pred-pct{font-size:10px;color:var(--light);letter-spacing:1.5px;text-transform:uppercase;text-align:center;margin-top:4px}
+.pred-title{font-family:'Libre Baskerville',serif;font-size:18px;font-weight:700;color:var(--dark);margin-bottom:10px}
+.pred-body{font-size:14px;color:var(--mid);line-height:1.8;margin-bottom:12px}
+.pred-you{font-size:14px;font-weight:600;color:var(--dark);padding-left:12px;border-left:3px solid var(--teal)}
+.pred-link{display:inline-block;margin-top:12px;font-size:11px;color:var(--light);letter-spacing:1px;text-transform:uppercase;cursor:pointer;border-bottom:1px solid var(--border);padding-bottom:2px;transition:color .15s}
+.pred-link:hover{color:var(--teal);border-bottom-color:var(--teal)}
+.dev-table{border:1px solid var(--border)}
+.dev-header-row{display:grid;grid-template-columns:2.5fr 1fr 1.2fr 1fr 110px;gap:16px;padding:10px 22px;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--light);font-weight:700;background:var(--pink);border-bottom:1px solid var(--border)}
+.dev-row{display:grid;grid-template-columns:2.5fr 1fr 1.2fr 1fr 110px;gap:16px;padding:18px 22px;background:var(--surface);border-bottom:1px solid var(--border);align-items:center;transition:background .15s}
+.dev-row:last-child{border-bottom:none}.dev-row:hover{background:var(--pink)}
+.dev-name{font-size:14px;color:var(--mid)}
+.dev-num{font-family:'Libre Baskerville',serif;font-size:17px;font-weight:700;color:var(--dark)}
+.dev-hist{font-size:12px;color:var(--light)}
+.dev-delta{font-size:13px;font-weight:700}
+.sig{display:inline-block;padding:3px 10px;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase}
+.sig-green{background:rgba(26,122,58,.1);color:var(--green)}
+.sig-amber{background:rgba(179,92,0,.1);color:var(--amber)}
+.sig-red{background:rgba(204,0,0,.08);color:var(--red)}
+.footer{border-top:1px solid var(--border);padding:16px 48px;display:flex;justify-content:space-between;align-items:center;margin-top:20px}
+.footer-sources{font-size:11px;color:var(--light)}
+.footer-disc{font-size:10px;color:#bbb}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
 @media(max-width:900px){
-  .header,.ticker,.nav,.page,.footer{padding-left:20px;padding-right:20px;}
-  .logo{font-size:48px;letter-spacing:8px;}
-  .header-kpis{flex-wrap:wrap;}.hkpi{min-width:50%;}
-  .kpi-strip{grid-template-columns:1fr 1fr;}
-  .two-col{grid-template-columns:1fr;}
-  .pred-item{grid-template-columns:1fr;}
-  .dev-header-row,.dev-row{grid-template-columns:1fr 1fr;}
+  .header,.ticker,.nav,.page,.footer{padding-left:20px;padding-right:20px}
+  .logo{font-size:44px;letter-spacing:6px}
+  .header-kpis{flex-wrap:wrap}.hkpi{min-width:50%}
+  .kpi-strip{grid-template-columns:1fr 1fr}
+  .two-col{grid-template-columns:1fr}
+  .pred-item{grid-template-columns:1fr}
+  .dev-header-row,.dev-row{grid-template-columns:1fr 1fr}
 }
 </style>
 </head>
@@ -151,7 +142,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);
   <div class="header-top">
     <span class="hdr-date" id="hdr-date"></span>
     <div class="hdr-links">
-      <span>Mercados</span><span>Macro</span><span>Divisas</span><span>Energía</span>
+      <a>Mercados</a><a>Macro</a><a>Divisas</a><a>Energía</a>
       <div class="hdr-sep"></div>
       <div class="live-badge"><span class="live-dot"></span>En vivo</div>
     </div>
@@ -177,14 +168,14 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);
   <div class="tick"><span class="tick-label">GBP/USD</span><span id="t-gbpusd" class="tick-val">—</span><span id="t-gbpusd-chg" class="flat"></span></div>
   <div class="tick"><span class="tick-label">USD/JPY</span><span id="t-usdjpy" class="tick-val">—</span><span id="t-usdjpy-chg" class="flat"></span></div>
   <div class="tick"><span class="tick-label">Inflación €</span><span class="tick-val">1.7%</span><span class="flat"> →</span></div>
-  <div class="tick"><span class="tick-label">Actualizado</span><span id="t-time" class="tick-val" style="color:rgba(255,255,255,0.3)">—</span></div>
+  <div class="tick"><span class="tick-label">Actualizado</span><span id="t-time" class="tick-val" style="color:rgba(255,255,255,.3)">—</span></div>
 </div>
 
 <div class="nav">
-  <div class="nav-item active" id="nav-panel" onclick="showTab('panel')">Panel</div>
-  <div class="nav-item" id="nav-chat" onclick="showTab('chat')">Analista IA</div>
-  <div class="nav-item" id="nav-pred" onclick="showTab('pred')">Predicciones</div>
-  <div class="nav-item" id="nav-dev" onclick="showTab('dev')">Desviaciones</div>
+  <div class="nav-item active" data-tab="panel">Panel</div>
+  <div class="nav-item" data-tab="chat">Analista IA</div>
+  <div class="nav-item" data-tab="pred">Predicciones</div>
+  <div class="nav-item" data-tab="dev">Desviaciones</div>
 </div>
 
 <div id="panel" class="panel active"><div class="page">
@@ -200,33 +191,33 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);
       <div class="card">
         <div class="context-item">
           <div class="ctx-icon">🏦</div>
-          <div><div class="ctx-title">BCE sin movimiento en 2026</div><span class="ctx-status status-ok">Estable</span><div class="ctx-body">Con la inflación en 1.7% por debajo del objetivo del 2%, el BCE no tiene presión para subir tipos. Lagarde confirmó en febrero que la postura actual es apropiada. Probabilidad de cambio en la próxima reunión: 18%.</div><div class="ctx-action">Tu ahorro en euros está protegido. No esperes más rentabilidad en depósitos este año.</div></div>
+          <div><div class="ctx-title">BCE sin movimiento en 2026</div><span class="ctx-status status-ok">Estable</span><div class="ctx-body">Con la inflación en 1.7% por debajo del objetivo del 2%, el BCE no tiene presión para subir tipos. Lagarde confirmó en febrero que la postura actual es apropiada. Probabilidad de cambio: 18%.</div><div class="ctx-action">Tu ahorro en euros está protegido. No esperes más rentabilidad en depósitos este año.</div></div>
         </div>
         <div class="context-item">
           <div class="ctx-icon">🇺🇸</div>
-          <div><div class="ctx-title">Fed en modo bajada — dólar débil</div><span class="ctx-status status-watch">Revisar cartera</span><div class="ctx-body">Goldman Sachs, Morgan Stanley y Bank of America coinciden en dos bajadas de tipos en junio y septiembre de 2026. El objetivo es llevar los tipos al 3.25%. Esto debilitará el dólar frente al euro.</div><div class="ctx-action">Revisa si tus ETFs americanos tienen cobertura EUR/USD. Sin ella, podrías perder en euros aunque suban en dólares.</div></div>
+          <div><div class="ctx-title">Fed en modo bajada — dólar débil</div><span class="ctx-status status-watch">Revisar cartera</span><div class="ctx-body">Goldman Sachs, Morgan Stanley y Bank of America coinciden en dos bajadas de tipos en junio y septiembre de 2026. Objetivo: llevar tipos al 3.25%.</div><div class="ctx-action">Revisa si tus ETFs americanos tienen cobertura EUR/USD. Sin ella, podrías perder en euros aunque suban en dólares.</div></div>
         </div>
         <div class="context-item">
           <div class="ctx-icon">⚠️</div>
-          <div><div class="ctx-title">Petróleo — riesgo geopolítico activo</div><span class="ctx-status status-risk">Monitorizar</span><div class="ctx-body">El conflicto Irán–Israel–EEUU ha disparado el petróleo un 20% esta semana. Si se mantiene, el impacto en la inflación europea podría ser de 0.3 a 0.5 puntos.</div><div class="ctx-action">Mantén liquidez. No hagas movimientos grandes hasta que el conflicto geopolítico se estabilice.</div></div>
+          <div><div class="ctx-title">Petróleo — riesgo geopolítico activo</div><span class="ctx-status status-risk">Monitorizar</span><div class="ctx-body">El conflicto Irán–Israel–EEUU ha disparado el petróleo un 20% esta semana. Impacto potencial en inflación europea: 0.3–0.5 puntos.</div><div class="ctx-action">Mantén liquidez. No hagas movimientos grandes hasta que el conflicto se estabilice.</div></div>
         </div>
       </div>
     </div>
     <div>
       <div class="section-head"><h2>Indicadores clave</h2></div>
       <div class="card">
-        <div class="indicator-row"><div class="ind-label">Diferencial Fed–BCE</div><div class="ind-val">+2.25%</div><div class="ind-sub">Media histórica: +0.5% — inusualmente alto</div></div>
+        <div class="indicator-row"><div class="ind-label">Diferencial Fed–BCE</div><div class="ind-val">+2.25%</div><div class="ind-sub">Media histórica: +0.5%</div></div>
         <div class="indicator-row"><div class="ind-label">EUR/USD proyectado Dic 2026</div><div class="ind-val">1.15–1.20</div><div class="ind-sub">Si Fed baja y BCE se mantiene</div></div>
         <div class="indicator-row"><div class="ind-label">Prob. BCE sin cambio</div><div class="ind-val">82%</div><div class="ind-sub">Próxima reunión · Mercados futuros</div></div>
         <div class="indicator-row"><div class="ind-label">Bajadas BCE (12 meses)</div><div class="ind-val">8</div><div class="ind-sub">Media histórica: 3–4 por ciclo</div></div>
       </div>
       <div class="section-head" style="margin-top:22px"><h2>Preguntas frecuentes</h2></div>
       <div class="quick-q">
-        <button class="quick-btn" onclick="askAnalyst('¿Debería mover mis ETFs americanos ahora?')">¿Mover ETFs americanos?</button>
-        <button class="quick-btn" onclick="askAnalyst('¿Cuál es el impacto del conflicto de Irán en mi cartera?')">¿Impacto conflicto Irán?</button>
-        <button class="quick-btn" onclick="askAnalyst('¿Comprar ahora o esperar?')">¿Comprar o esperar?</button>
-        <button class="quick-btn" onclick="askAnalyst('¿El dólar débil cómo afecta a mi cartera?')">¿Dólar débil?</button>
-        <button class="quick-btn" onclick="askAnalyst('¿Mis ahorros están protegidos contra la inflación?')">¿Ahorros vs inflación?</button>
+        <button class="quick-btn" data-q="¿Debería mover mis ETFs americanos ahora?">¿Mover ETFs americanos?</button>
+        <button class="quick-btn" data-q="¿Cuál es el impacto del conflicto de Irán en mi cartera?">¿Impacto conflicto Irán?</button>
+        <button class="quick-btn" data-q="¿Comprar ahora o esperar?">¿Comprar o esperar?</button>
+        <button class="quick-btn" data-q="¿El dólar débil cómo afecta a mi cartera?">¿Dólar débil?</button>
+        <button class="quick-btn" data-q="¿Mis ahorros están protegidos contra la inflación?">¿Ahorros vs inflación?</button>
       </div>
     </div>
   </div>
@@ -236,11 +227,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);
   <div class="chat-wrap">
     <div class="chat-header"><h2>Analista financiero personal</h2><p>Lenguaje ejecutivo · Sin jerga · Datos reales · Mar 2026</p></div>
     <div class="chat-messages" id="chatMessages">
-      <div class="msg msg-ai"><div class="msg-label">Analista · Moneta</div><div class="msg-bubble">Buenos días. Tengo los datos de mercado actualizados. Puedo ayudarte a tomar decisiones concretas sobre tu cartera. ¿Qué quieres saber?</div></div>
+      <div class="msg msg-ai"><div class="msg-label">Analista · Moneta</div><div class="msg-bubble">Buenos días. Tengo los datos de mercado actualizados a hoy. Puedo ayudarte a tomar decisiones concretas sobre tu cartera. ¿Qué quieres saber?</div></div>
     </div>
     <div class="chat-input-area">
-      <input id="chatInput" type="text" placeholder="Ej: ¿Debería mover mis ETFs americanos ahora?" onkeydown="if(event.key==='Enter')sendChat()">
-      <button id="sendBtn" onclick="sendChat()">Enviar</button>
+      <input id="chatInput" type="text" placeholder="Ej: ¿Debería mover mis ETFs americanos ahora?">
+      <button id="sendBtn">Enviar</button>
     </div>
   </div>
 </div></div>
@@ -248,9 +239,18 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);
 <div id="pred" class="panel"><div class="page">
   <div class="section-head"><h2>Predicciones verificables</h2><span>Publicadas 8 Mar 2026 · Revisables en 6 meses</span></div>
   <div class="pred-grid">
-    <div class="pred-item"><div><div class="pred-num">85</div><div class="pred-pct">PROB %</div></div><div><div class="pred-title">BCE mantendrá tipos en 2.0% durante todo 2026</div><div class="pred-body">Inflación en 1.7%, por debajo del objetivo del 2%. Solo un shock de petróleo sostenido podría cambiar esta postura.</div><div class="pred-you">Los depósitos y bonos europeos de corto plazo son la opción más segura este año.</div><span class="pred-link" onclick="askAnalyst('Explícame más sobre la predicción del BCE para 2026')">Consultar al analista →</span></div></div>
-    <div class="pred-item"><div><div class="pred-num">70</div><div class="pred-pct">PROB %</div></div><div><div class="pred-title">Fed bajará tipos dos veces en junio y septiembre 2026</div><div class="pred-body">Consenso de Goldman Sachs, Morgan Stanley, Bank of America y Nomura. Objetivo: llevar tipos del 4.25% al 3.00–3.25%.</div><div class="pred-you">El dólar se debilitará. Revisa cobertura EUR/USD en tus ETFs americanos.</div><span class="pred-link" onclick="askAnalyst('¿Cómo afectan las bajadas de la Fed a mis inversiones?')">Consultar al analista →</span></div></div>
-    <div class="pred-item"><div><div class="pred-num">65</div><div class="pred-pct">PROB %</div></div><div><div class="pred-title">EUR/USD alcanzará el rango 1.15–1.20 a finales de 2026</div><div class="pred-body">El diferencial Fed–BCE favorece al euro. Si la Fed baja y el BCE se mantiene, el euro se aprecia.</div><div class="pred-you">Con EUR/USD en 1.15–1.20, tus activos en dólares valdrán menos en euros.</div><span class="pred-link" onclick="askAnalyst('¿Cómo me afecta la apreciación del euro?')">Consultar al analista →</span></div></div>
+    <div class="pred-item">
+      <div><div class="pred-num">85</div><div class="pred-pct">PROB %</div></div>
+      <div><div class="pred-title">BCE mantendrá tipos en 2.0% durante todo 2026</div><div class="pred-body">Inflación en 1.7%, por debajo del objetivo. Sin presión para subir. Solo un shock de petróleo sostenido podría cambiar esta postura.</div><div class="pred-you">Los depósitos y bonos europeos de corto plazo son la opción más segura.</div><span class="pred-link" data-q="Explícame más sobre la predicción del BCE para 2026">Consultar al analista →</span></div>
+    </div>
+    <div class="pred-item">
+      <div><div class="pred-num">70</div><div class="pred-pct">PROB %</div></div>
+      <div><div class="pred-title">Fed bajará tipos dos veces en junio y septiembre 2026</div><div class="pred-body">Consenso de Goldman Sachs, Morgan Stanley, Bank of America y Nomura. Objetivo: llevar tipos al 3.00–3.25%.</div><div class="pred-you">El dólar se debilitará. ETFs sin cobertura EUR/USD perderán en euros.</div><span class="pred-link" data-q="¿Cómo afectan las bajadas de la Fed a mis inversiones?">Consultar al analista →</span></div>
+    </div>
+    <div class="pred-item">
+      <div><div class="pred-num">65</div><div class="pred-pct">PROB %</div></div>
+      <div><div class="pred-title">EUR/USD alcanzará el rango 1.15–1.20 a finales de 2026</div><div class="pred-body">El diferencial Fed–BCE favorece al euro. Si la Fed baja y el BCE se mantiene, el euro se aprecia.</div><div class="pred-you">Considera diversificar hacia ETFs europeos o con cobertura de divisa.</div><span class="pred-link" data-q="¿Cómo me afecta la apreciación del euro en mi cartera?">Consultar al analista →</span></div>
+    </div>
   </div>
 </div></div>
 
@@ -258,11 +258,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);
   <div class="section-head"><h2>Detector de desviaciones históricas</h2><span>¿Qué está pasando ahora que es inusual?</span></div>
   <div class="dev-table">
     <div class="dev-header-row"><span>Indicador</span><span>Actual</span><span>Histórico</span><span>Desviación</span><span>Señal</span></div>
-    <div class="dev-row"><span class="dev-name">Inflación BCE vs objetivo (2%)</span><span class="dev-num">1.7%</span><span class="dev-hist">Media: 2.8%</span><span class="dev-delta" style="color:var(--green)">−1.1pp</span><span class="sig sig-green">Oportunidad</span></div>
-    <div class="dev-row"><span class="dev-name">Diferencial de tipos Fed–BCE</span><span class="dev-num">+2.25%</span><span class="dev-hist">Histórico: +0.5%</span><span class="dev-delta" style="color:var(--amber)">+1.75pp</span><span class="sig sig-amber">Vigilar</span></div>
-    <div class="dev-row"><span class="dev-name">Velocidad de bajadas BCE (12 meses)</span><span class="dev-num">8 bajadas</span><span class="dev-hist">Normal: 3–4</span><span class="dev-delta" style="color:var(--amber)">+100%</span><span class="sig sig-amber">Inusual</span></div>
-    <div class="dev-row"><span class="dev-name">Variación semanal petróleo Brent</span><span class="dev-num">+20%</span><span class="dev-hist">Normal: ±3%</span><span class="dev-delta" style="color:var(--red)">+17pp</span><span class="sig sig-red">Riesgo</span></div>
-    <div class="dev-row"><span class="dev-name">Probabilidad subida tipos BCE</span><span class="dev-num">15%</span><span class="dev-hist">Hace 1 mes: 2%</span><span class="dev-delta" style="color:var(--red)">+13pp</span><span class="sig sig-red">Nuevo riesgo</span></div>
+    <div class="dev-row"><span class="dev-name">Inflación BCE vs objetivo</span><span class="dev-num">1.7%</span><span class="dev-hist">Media: 2.8%</span><span class="dev-delta" style="color:var(--green)">−1.1pp</span><span class="sig sig-green">Oportunidad</span></div>
+    <div class="dev-row"><span class="dev-name">Diferencial Fed–BCE</span><span class="dev-num">+2.25%</span><span class="dev-hist">Histórico: +0.5%</span><span class="dev-delta" style="color:var(--amber)">+1.75pp</span><span class="sig sig-amber">Vigilar</span></div>
+    <div class="dev-row"><span class="dev-name">Velocidad bajadas BCE (12m)</span><span class="dev-num">8 bajadas</span><span class="dev-hist">Normal: 3–4</span><span class="dev-delta" style="color:var(--amber)">+100%</span><span class="sig sig-amber">Inusual</span></div>
+    <div class="dev-row"><span class="dev-name">Variación semanal petróleo</span><span class="dev-num">+20%</span><span class="dev-hist">Normal: ±3%</span><span class="dev-delta" style="color:var(--red)">+17pp</span><span class="sig sig-red">Riesgo</span></div>
+    <div class="dev-row"><span class="dev-name">Prob. subida tipos BCE</span><span class="dev-num">15%</span><span class="dev-hist">Hace 1 mes: 2%</span><span class="dev-delta" style="color:var(--red)">+13pp</span><span class="sig sig-red">Nuevo riesgo</span></div>
   </div>
 </div></div>
 
@@ -272,129 +272,142 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);
 </div>
 
 <script>
-var SYSTEM = "Eres el analista financiero personal de Moneta. Lenguaje ejecutivo, directo, sin jerga. Máximo 4-5 frases.\n\nDatos a 8 Marzo 2026:\n- BCE: 2.0% estable. Prob. sin cambio: 82%\n- Fed: 4.25%. 2 bajadas Jun+Sep 2026, objetivo 3.25%\n- Inflación €: 1.7%, bajo objetivo 2%\n- Diferencial Fed-BCE: +2.25% (hist. +0.5%)\n- Petróleo: +20% semanal. Conflicto Irán-Israel-EEUU activo\n- EUR/USD proyectado: 1.15-1.20 a Dic 2026\n\nTermina con una conclusión práctica de una frase.";
+document.addEventListener('DOMContentLoaded', function() {
 
-var chatHistory = [];
-var prevRates = {};
-
-function showTab(id) {
-  var panels = document.querySelectorAll('.panel');
-  for (var i = 0; i < panels.length; i++) {
-    panels[i].classList.remove('active');
+  // TABS
+  function showTab(id) {
+    document.querySelectorAll('.panel').forEach(function(p) {
+      p.classList.remove('active');
+    });
+    document.querySelectorAll('.nav-item').forEach(function(n) {
+      n.classList.remove('active');
+    });
+    var panel = document.getElementById(id);
+    if (panel) panel.classList.add('active');
+    document.querySelectorAll('.nav-item').forEach(function(n) {
+      if (n.getAttribute('data-tab') === id) n.classList.add('active');
+    });
   }
-  var navItems = document.querySelectorAll('.nav-item');
-  for (var i = 0; i < navItems.length; i++) {
-    navItems[i].classList.remove('active');
+
+  document.querySelectorAll('.nav-item').forEach(function(n) {
+    n.addEventListener('click', function() {
+      showTab(this.getAttribute('data-tab'));
+    });
+  });
+
+  // ASK ANALYST
+  function askAnalyst(text) {
+    showTab('chat');
+    var input = document.getElementById('chatInput');
+    if (input) input.value = text;
+    setTimeout(sendChat, 100);
   }
-  document.getElementById(id).classList.add('active');
-  document.getElementById('nav-' + id).classList.add('active');
-}
 
-function askAnalyst(text) {
-  showTab('chat');
-  document.getElementById('chatInput').value = text;
-  setTimeout(sendChat, 80);
-}
+  document.querySelectorAll('.quick-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      askAnalyst(this.getAttribute('data-q'));
+    });
+  });
 
-function addMsg(role, content) {
-  var container = document.getElementById('chatMessages');
-  var div = document.createElement('div');
-  div.className = 'msg msg-' + (role === 'user' ? 'user' : 'ai');
-  var label = role === 'user' ? 'Tú' : 'Analista · Moneta';
-  div.innerHTML = '<div class="msg-label">' + label + '</div><div class="msg-bubble">' + content + '</div>';
-  container.appendChild(div);
-  container.scrollTop = container.scrollHeight;
-  return div;
-}
+  document.querySelectorAll('.pred-link').forEach(function(link) {
+    link.addEventListener('click', function() {
+      askAnalyst(this.getAttribute('data-q'));
+    });
+  });
 
-function formatReply(text) {
-  var parts = text.split('**');
-  var result = '';
-  for (var i = 0; i < parts.length; i++) {
-    if (i % 2 === 1) {
-      result += '<strong>' + parts[i] + '</strong>';
+  // DATE
+  var days = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+  var months = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+  var now = new Date();
+  var dateEl = document.getElementById('hdr-date');
+  if (dateEl) dateEl.textContent = days[now.getDay()] + ', ' + now.getDate() + ' de ' + months[now.getMonth()] + ' de ' + now.getFullYear();
+
+  // TICKER
+  var prevRates = {};
+
+  function updateTick(valId, chgId, newVal, prevVal, inverse) {
+    var vEl = document.getElementById(valId);
+    var cEl = document.getElementById(chgId);
+    if (!vEl || !cEl) return;
+    vEl.textContent = newVal;
+    if (prevVal) {
+      var diff = parseFloat(newVal) - parseFloat(prevVal);
+      var up = inverse ? diff < 0 : diff > 0;
+      var dn = inverse ? diff > 0 : diff < 0;
+      cEl.className = up ? 'up' : dn ? 'down' : 'flat';
+      cEl.textContent = up ? ' ↑' : dn ? ' ↓' : ' →';
+      vEl.style.transition = 'color 0.4s';
+      vEl.style.color = up ? '#3cb86a' : dn ? '#e05252' : '#fff';
+      setTimeout(function() { vEl.style.color = '#fff'; }, 1400);
     } else {
-      result += parts[i];
+      cEl.className = 'flat';
+      cEl.textContent = ' →';
     }
   }
-  return result.replace(/\n/g, '<br>');
-}
 
-function sendChat() {
-  var input = document.getElementById('chatInput');
-  var btn = document.getElementById('sendBtn');
-  var text = input.value.trim();
-  if (!text || btn.disabled) return;
-  input.value = '';
-  btn.disabled = true;
-  btn.textContent = '...';
-  addMsg('user', text);
-  chatHistory.push({ role: 'user', content: text });
-  var loadingDiv = addMsg('assistant', '<em style="color:var(--light)">Analizando datos de mercado...</em>');
-  var xhr = new XMLHttpRequest();
-  xhr.open('POST', 'https://api.anthropic.com/v1/messages', true);
-  xhr.setRequestHeader('Content-Type', 'application/json');
-  xhr.onload = function() {
-    btn.disabled = false;
-    btn.textContent = 'Enviar';
-    if (xhr.status === 200) {
-      var data = JSON.parse(xhr.responseText);
-      var reply = data.content && data.content[0] && data.content[0].text ? data.content[0].text : 'Error al obtener respuesta.';
-      loadingDiv.querySelector('.msg-bubble').innerHTML = formatReply(reply);
-      chatHistory.push({ role: 'assistant', content: reply });
-    } else {
-      loadingDiv.querySelector('.msg-bubble').textContent = 'Error de conexión (' + xhr.status + ').';
-    }
-  };
-  xhr.onerror = function() {
-    btn.disabled = false;
-    btn.textContent = 'Enviar';
-    loadingDiv.querySelector('.msg-bubble').textContent = 'Error de conexión.';
-  };
-  xhr.send(JSON.stringify({
-    model: 'claude-sonnet-4-20250514',
-    max_tokens: 1000,
-    system: SYSTEM,
-    messages: chatHistory
-  }));
-}
-
-function updateTick(valId, chgId, newVal, prevVal, inverse) {
-  var vEl = document.getElementById(valId);
-  var cEl = document.getElementById(chgId);
-  if (!vEl || !cEl) return;
-  vEl.textContent = newVal;
-  if (prevVal) {
-    var diff = parseFloat(newVal) - parseFloat(prevVal);
-    var up = inverse ? diff < 0 : diff > 0;
-    var dn = inverse ? diff > 0 : diff < 0;
-    cEl.className = up ? 'up' : (dn ? 'down' : 'flat');
-    cEl.textContent = up ? ' ↑' : (dn ? ' ↓' : ' →');
-    vEl.style.transition = 'color 0.4s';
-    vEl.style.color = up ? '#3cb86a' : (dn ? '#e05252' : '#fff');
-    setTimeout(function() { vEl.style.color = '#fff'; }, 1400);
-  } else {
-    cEl.className = 'flat';
-    cEl.textContent = ' →';
+  function applyRates(rates) {
+    updateTick('t-eurusd', 't-eurusd-chg', rates.eurusd, prevRates.eurusd, false);
+    updateTick('t-gbpusd', 't-gbpusd-chg', rates.gbpusd, prevRates.gbpusd, false);
+    updateTick('t-usdjpy', 't-usdjpy-chg', rates.usdjpy, prevRates.usdjpy, true);
+    var hdr = document.getElementById('hdr-eurusd');
+    if (hdr) hdr.textContent = rates.eurusd;
+    prevRates = rates;
+    var el = document.getElementById('t-time');
+    if (el) el.textContent = new Date().toTimeString().slice(0, 8);
   }
-}
 
-function handleRates(rates) {
-  updateTick('t-eurusd', 't-eurusd-chg', rates.eurusd, prevRates.eurusd, false);
-  updateTick('t-gbpusd', 't-gbpusd-chg', rates.gbpusd, prevRates.gbpusd, false);
-  updateTick('t-usdjpy', 't-usdjpy-chg', rates.usdjpy, prevRates.usdjpy, true);
-  var hdr = document.getElementById('hdr-eurusd');
-  if (hdr) hdr.textContent = rates.eurusd;
-  prevRates = rates;
-  var timeEl = document.getElementById('t-time');
-  if (timeEl) timeEl.textContent = new Date().toTimeString().slice(0, 8);
-}
+  function fetchLiveData() {
+    fetch('https://api.frankfurter.app/latest?from=USD&to=EUR,GBP,JPY')
+      .then(function(r) { return r.json(); })
+      .then(function(d) {
+        applyRates({
+          eurusd: (1 / d.rates.EUR).toFixed(4),
+          gbpusd: (1 / d.rates.GBP).toFixed(4),
+          usdjpy: d.rates.JPY.toFixed(2)
+        });
+      })
+      .catch(function() {
+        fetch('https://open.er-api.com/v6/latest/USD')
+          .then(function(r) { return r.json(); })
+          .then(function(d) {
+            applyRates({
+              eurusd: (1 / d.rates.EUR).toFixed(4),
+              gbpusd: (1 / d.rates.GBP).toFixed(4),
+              usdjpy: d.rates.JPY.toFixed(2)
+            });
+          })
+          .catch(function() {
+            var el = document.getElementById('t-time');
+            if (el) el.textContent = 'sin conexión';
+          });
+      });
+  }
 
-function fetchFromApi2() {
-  var xhr2 = new XMLHttpRequest();
-  xhr2.open('GET', 'https://open.er-api.com/v6/latest/USD', true);
-  xhr2.onload = function() {
-    if (xhr2.status === 200) {
-      var d = JSON.parse(xhr2.responseText);
-      handleRates({
-        eurusd: (1 / d.rates.EUR).toFixed(4
+  fetchLiveData();
+  setInterval(fetchLiveData, 60000);
+
+  // CHAT
+  var chatHistory = [];
+  var SYSTEM = 'Eres el analista financiero personal de Moneta. Hablas en lenguaje ejecutivo, claro y directo. Sin jerga técnica. Máximo 4-5 frases concretas por respuesta.\n\nDatos verificados a 8 Marzo 2026:\n- BCE tipos: 2.0% estables. Prob. sin cambio: 82%\n- Fed tipos: 4.25%. Consenso: 2 bajadas en Jun y Sep 2026\n- Inflación Eurozona: 1.7%, bajo objetivo del 2%\n- Diferencial Fed-BCE: +2.25% (media histórica +0.5%)\n- Petróleo Brent: +20% esta semana. Conflicto Irán-Israel activo\n- EUR/USD proyectado: 1.15-1.20 a Dic 2026\n\nTermina siempre con una conclusión práctica de una frase.';
+
+  function addMsg(role, content) {
+    var c = document.getElementById('chatMessages');
+    var d = document.createElement('div');
+    d.className = 'msg msg-' + (role === 'user' ? 'user' : 'ai');
+    d.innerHTML = '<div class="msg-label">' + (role === 'user' ? 'Tú' : 'Analista · Moneta') + '</div><div class="msg-bubble">' + content + '</div>';
+    c.appendChild(d);
+    c.scrollTop = c.scrollHeight;
+    return d;
+  }
+
+  function sendChat() {
+    var input = document.getElementById('chatInput');
+    var btn = document.getElementById('sendBtn');
+    var text = input.value.trim();
+    if (!text || btn.disabled) return;
+    input.value = '';
+    btn.disabled = true;
+    btn.textContent = '...';
+    addMsg('user', text);
+    chatHistory.push({ role: 'user', content: text });
+    var loading = addMsg('assi
